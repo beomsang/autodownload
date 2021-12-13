@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Hit any key to stop autoboot:" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT_INPUT_ACCOUNT" cmd="" compStr="nuri-aimir-dcu login: " compStrCheckMode="true" timeout="100" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="INPUT_ACCOUNT" cmd="root" compStr="Password:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="aimiramm" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_SW_VERSION" cmd="cat /app/info/package.info | grep Package" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FW_Ver" value="v(?&lt;value&gt;.*) " validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value=" [0-9a-zA-Z]{6}.[0-9a-zA-Z]{7}.[0-9a-zA-Z]{3}" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_DEFAULTCONF_SIZE" cmd="ls -al /app/conf" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="DEFAULT_CONF" value=" 1000[\s,]+1000[\s,]+(?&lt;value&gt;.*)[\s,]+[a-zA-Z]{3}[\s,]+[0-9]{1,2}[\s,]+[0-9]{1,2}:[0-9]{1,2} default.conf$" validValue="[MIN:1235][MAX:1246]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DELETE_PACKAGE" cmd="rm /NDC*" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MOVE_DIR" cmd="cd /app/mterm" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="false" />
+  <Items itemName="CHECK_MOBILE" cmd="./mterm /dev/ttyACM3 115200" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="false">
+    <Regex key="ATZ" value="ATZ" validValue="ATZ" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="OK" value="OK" validValue="OK" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="INPUT_ETX" cmd="[ETX]" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="false" />
+  <Items itemName="CHECK_EUIID" cmd="cat /app/conf/default.conf | grep serial" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="5" option="" USE="true">
+    <Regex key="EUI64ID" value="serial = (?&lt;value&gt;.*)" validValue="[LENGTH:16][NOT:0000000000000001]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MOVE_DIR" cmd="cd /app/conf" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_WATCHDOG" cmd="crontab -e" compStr="/var/spool/cron/crontabs" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="5" option="" USE="true">
+    <Regex key="WATCHDOG" value="/script/watchdog.sh" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="WATCHDOG2" value="/app/boot27/S99uSshd (?&lt;value&gt;.*)" validValue="start" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="EXIT_EDIT" cmd=":q!" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="5" option="" USE="true" />
+  <Items itemName="MOVE_DIR" cmd="cd /app/strongSwan/sbin" compStr="root@nuri-aimir-dcu" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_IPSEC" cmd="./ipsec start" compStr="root@nuri-aimir-dcu:/app/strongSwan/sbin# " compStrCheckMode="false" timeout="7" SkipCond="" regexCheckRetry="5" option="" USE="true">
+    <Regex key="IPSEC" value="Starting strongSwan (?&lt;value&gt;.*)..." validValue="5.4.0 IPsec [starter]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_RUN_AGENT" cmd="ls -al /etc/nuri" compStr="root@nuri-aimir-dcu:/app/strongSwan/sbin# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="AGENT" value="auto01 -&gt;[\s,]+(?&lt;value&gt;.*)" validValue="/app/bin/agent" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_RUN_AGENT2" cmd="ps" compStr="root@nuri-aimir-dcu:/app/strongSwan/sbin# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="15" option="" USE="true">
+    <Regex key="AGENT_PANA" value="/app/bin/PANA_(?&lt;value&gt;.*)" validValue="agent" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="AGENT_SNMP" value="/app/bin/SNMP_agent -c (?&lt;value&gt;.*)" validValue="/app/snmp/sbin/snmpd.conf" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="HARDWARE_TEST" cmd="/app/bin/hwtest --hw-ver=1.0 --mem-size=512 --disable-ctrl --disable-gpio --disable-mobile --disable-certs --sg-fwver=0x0100 --sg-fwbuild=0x0110 --sg-devtype=0x20 --sg-tx-power=-3 --sg-network-speed=3" compStr="root@nuri-aimir-dcu:/app/strongSwan/sbin# " compStrCheckMode="false" timeout="20" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="Test Result" value="Test Result \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="SYNC" cmd="sync" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SYNC" cmd="sync" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SYNC" cmd="sync" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="REBOOT" cmd="reboot" compStr="Booting from nand" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="2" option="" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>

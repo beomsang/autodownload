@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FW_DOWNLOAD" cmd="[FILE:[FW_FILE_#1]]" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="2" option="" USE="true" />
+  <Items itemName="BOOTING_WITH_CLI" cmd="" compStr="" compStrCheckMode="true" timeout="150" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FACTORY_SET" cmd="f 0 3 1 3" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="70" SkipCond="" regexCheckRetry="2" option="" USE="true">
+    <Regex key="FACTORY_SET_IN" value="Factory setting! (?&lt;value&gt;.*)" validValue="no reboot" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="SUPERCAP_CHARGE_ON" cmd="a c 7" compStr="Charge on" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="USIM_TEST" cmd="a m" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="6" option="" USE="true">
+    <Regex key="ATCMD_TEST" value="AtCmd:[\s,]+(?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SIM_TEST" value="SimTest:[\s,]+(?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMEI" value="IMEI:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Telecom Number" value="CNUM:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:11]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMSI" value="IMSI:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ICC" value="ICCID:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:19]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="VALIDATION" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="METER_LOOPBACK" cmd="a d [METER_LAST2_CHAR]" compStr="LOOPTEST OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="2" option="" USE="true" />
+  <Items itemName="SET_SYSSERIAL" cmd="A C SYSSERIAL [EUI_ID]" compStr="SNMP_sysSerial SET DONE" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_SYSMODEL" cmd="A C SYSMODEL NAMR-AE231L" compStr="SNMP_sysModel SET DONE" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_MGWT" cmd="A C MGWT [TYPE_NUM]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+<Items itemName="SET_DIV" cmd="A C DIV 10" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_PUSHPOLLING" cmd="A C PUSH 2" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MODULE_BYPASS_ENTER" cmd="b" compStr="-Start" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_FIP_IPV6" cmd="AT$FEP=&quot;FEPSERVER&quot;,&quot;[FEP_IP_SET]&quot;" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_SIP_IPV6" cmd="AT$SEC=&quot;SECSERVERIP&quot;,&quot;[SIP_IP_SET]&quot;" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_SNMPIP_IPV6" cmd="AT$SNMP=&quot;SERVERIP&quot;,&quot;[SNMP_IP_SET]&quot;" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_SYSSERIAL" cmd="AT$SNMP=&quot;SYSSERIAL&quot;,&quot;[EUI_ID]&quot;" compStr="OK" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_SYSMODEL" cmd="AT$SNMP=&quot;SYSMODEL&quot;,&quot;NAMR-AE231L&quot;" compStr="OK" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SET_MGWT" cmd="AT$SNMP=&quot;MGWT&quot;,&quot;[TYPE_NUM]&quot;" compStr="OK" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="READ_CRSM_OLD" cmd="AT+CRSM=176,28539,0,0,12" compStr="OK" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="OLD_CRSM" value="[0-9A-Z]{24}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="SET_CRSM" cmd="AT+CRSM=214,28539,0,0,12,&quot;[NEW_CRSM]&quot;" compStr="OK" compStrCheckMode="true" timeout="2" SkipCond="NEED_SET_CRSM" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="READ_CRSM_NEW" cmd="AT+CRSM=176,28539,0,0,12" compStr="OK" compStrCheckMode="true" timeout="2" SkipCond="NEED_SET_CRSM" regexCheckRetry="3" option="" USE="true">
+    <Regex key="NEW_CRSM" value="[0-9A-Z]{24}" validValue="[NEW_CRSM]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+<Items itemName="READ_SECURE_KEY" cmd="AT$FWVERIFY=3" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SECURITY_KEY" value="RIFY:3,(?&lt;value&gt;.*)" validValue="KEP8621000001_sign.der" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+    <Items itemName="READ_SECURE_HASH" cmd="AT$SNMP=&quot;LASTFWHASH&quot;" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SECURITY_HASH" value="LASTFWHASH:(?&lt;value&gt;.*)" validValue="019ece0b66401b1da6fa69077a4a8a52af6f7cdb6726369e7df968b1cfbaf081" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+<Items itemName="CHECK_MODULE_PROPERTY" cmd="AT$SNMP" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="CHECK_SYSSERIAL" value="SYSSERIAL:(?&lt;value&gt;.*)" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="CHECK_SYSMODEL" value="SYSMODEL:(?&lt;value&gt;.*)" validValue="NAMR-AE231L" isGetAttribute="true" isChecked="false" realValue="" />
+   <Regex key="CHECK_MGWT" value="MGWT:(?&lt;value&gt;.*)" validValue="[TYPE_NUM]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MODULE_BYPASS_ESCAPE" cmd="[ESC]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_FEP" cmd="a c 1" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FEP_IP" value="FEP IP[\s,]+:(?&lt;value&gt;.*)" validValue="[FEP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_PORT" value="FEP PORT[\s,]+: (?&lt;value&gt;.*)" validValue="3110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_TRAP_PORT" value="Trap PORT[\s,]+: (?&lt;value&gt;.*)" validValue="7778" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RO" value="ACODE RO[\s,]+: (?&lt;value&gt;.*)" validValue="kepfepro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RW" value="ACODE RW[\s,]+: (?&lt;value&gt;.*)" validValue="kepfeprw" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPFQDN" value="FEPFQDN[\s,]+: (?&lt;value&gt;.*)" validValue="KEP8000000001.kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPREALM" value="FEPREALM[\s,]+: (?&lt;value&gt;.*)" validValue="kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SEC" cmd="a c 2" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SIP_IP" value="SEC IP[\s,]+:(?&lt;value&gt;.*)" validValue="[SIP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SEC_PORT" value="SECSERVERPORT[\s,]+: (?&lt;value&gt;.*)" validValue="12083" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_TITLE" value="SEC_SYST[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_DTLS" value="SEC_DTLS[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM].kepco.com.der" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_EAP" value="SEC_EAP[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM]_sign.der" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SNMT" cmd="a c 3" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SNMP_IP" value="SNMP IP[\s,]+:(?&lt;value&gt;.*)" validValue="[SNMP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PORT" value="SERVERPORT[\s,]+: (?&lt;value&gt;.*)" validValue="161" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_TRAP_PORT" value="TRAP PORT[\s,]+: (?&lt;value&gt;.*)" validValue="162" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RO" value="PWRO[\s,]+: (?&lt;value&gt;.*)" validValue="kepsnmpro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RW" value="PWRW[\s,]+: (?&lt;value&gt;.*)" validValue="kepsnmprw" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_FW_VERSION" cmd="a b" compStr="M_CLI&gt;" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FW_Ver" value="FW Build:[\s,]+: (?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_PROPERTY" cmd="a b" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="Module_Ver" value="FW Version:[\s,]+: (?&lt;value&gt;.*)" validValue="V0.2.00 V62" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_IP" value="FEP_IP[\s,]+: (?&lt;value&gt;.*)" validValue="[FEP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_PORT" value="FEP_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="3110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_TRAP_PORT" value="FEP_TRAP[\s,]+: (?&lt;value&gt;.*)" validValue="7778" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_BYPASS_PORT" value="BYPASS[\s,]+: (?&lt;value&gt;.*)" validValue="11470" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SIP_IP" value="SEC_IP[\s,]+: (?&lt;value&gt;.*)" validValue="[SIP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SEC_PORT" value="SEC_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="12083" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_TITLE" value="System Title[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_DTLS" value="System DTLS[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM].kepco.com.der" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_EAP" value="System EAP[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM]_sign.der" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RO" value="ACODE_RO[\s,]+: (?&lt;value&gt;.*)" validValue="kepfepro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RW" value="ACODE_RW[\s,]+: (?&lt;value&gt;.*)" validValue="kepfeprw" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_IP" value="SNMP IP[\s,]+: (?&lt;value&gt;.*)" validValue="[SNMP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PORT" value="SNMP PORT[\s,]+: (?&lt;value&gt;.*)" validValue="161" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_TRAP_PORT" value="SNMP TRAPIP PORT[\s,]+: (?&lt;value&gt;.*)" validValue="162" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSSERIAL" value="SYSSERIAL[\s,]+: (?&lt;value&gt;.*)" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSMODEL" value="SYSMODEL[\s,]+: (?&lt;value&gt;.*)" validValue="NAMR-AE231L" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DIV" value="DIV\(0~180\):[\s,]+: (?&lt;value&gt;.*)" validValue="10" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="PUSHPOLLING" value="PushOrPolling[\s,]+: (?&lt;value&gt;.*) \(1:poll, 2:push\)" validValue="2" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RO" value="SNMP_PW_RO[\s,]+: (?&lt;value&gt;.*)" validValue="kepsnmpro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RW" value="SNMP_PW_RW[\s,]+: (?&lt;value&gt;.*)" validValue="kepsnmprw" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPFQDN" value="FEPFQDN[\s,]+: (?&lt;value&gt;.*)" validValue="KEP8000000001.kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPREALM" value="FEPREALM[\s,]+: (?&lt;value&gt;.*)" validValue="kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MODULE_BYPASS_ENTER" cmd="b" compStr="-Start" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="LTE_DISCONNECT" cmd="AT+APMODE=0" compStr="" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="MODULE_BYPASS_ESCAPE" cmd="[ESC]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+   <Items itemName="SUPERCAP_CHECK" cmd="a e" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="false" >
+   <Regex key="VOLTAGE" value="Super cap Volt: (?&lt;value&gt;.*) mV" validValue="[MIN:1000][MAX:3000]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+
+ <Items itemName="RELEASE_MFG" cmd="R 1" compStr="Init System Processor" compStrCheckMode="true" timeout="150" SkipCond="" regexCheckRetry="1" option="" USE="true">
+    <Regex key="Factorytest_Mode" value="(?&lt;value&gt;.*) Factorytest Mode complete" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="kepco" compStr="Password Verified!" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="x230LT_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+<Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>

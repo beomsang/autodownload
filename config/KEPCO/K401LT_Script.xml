@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+   <Items itemName="FW_DOWNLOAD" cmd="[FILE:[FW_FILE_#1]]" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOTING_WITH_CLI" cmd="" compStr="" compStrCheckMode="true" timeout="150" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RETRY" cmd="" compStr="" compStrCheckMode="true" timeout="50" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+   <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="USIM_TEST" cmd="M" compStr="SWVER:" compStrCheckMode="true" timeout="13" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="IMEI" value="^IMEI:[\s,]+(?&lt;value&gt;.*)" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ATCMD_TEST" value="^AtCmd:[\s,]+(?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SIM_TEST" value="^SimTest:[\s,]+(?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Telecom Number" value="^CNUM:[\s,]+(?&lt;value&gt;.*)" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMSI" value="^IMSI:[\s,]+(?&lt;value&gt;.*)" validValue="[NOT:000000000000000][LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ICC" value="^ICCID:[\s,]+(?&lt;value&gt;.*)" validValue="[NOT:0000000000000000000][LENGTH:19]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="RETRY_END" cmd="" compStr="" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="30" option="" USE="true" />
+  <Items itemName="CHECK_MODULE_VERSION" cmd="M" compStr="SWVER:" compStrCheckMode="true" timeout="13" SkipCond="" regexCheckRetry="6" USE="true">
+    <Regex key="MODEUL_VER" value="SWVER:[\s,]+V(?&lt;value&gt;.*)" validValue="0.1.04V10" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="METER_TEST_OPTICAL_READY" cmd="L 1" compStr="ExtRom Test SUCCESS" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="EXTROM_TEST" value="ExtRom Test (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_TEST_BY_OPTICAL" cmd="METER TEST OK" compStr="METER TEST OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ESC" cmd="[ESC]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CONFIRM_CONTINUE" cmd="" compStr="" compStrCheckMode="true" timeout="50" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CONNECT_COMPORT_EXTERN" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="2" USE="true" />
+  <Items itemName="METER_TEST_COM_READY" cmd="L 1" compStr="ExtRom Test SUCCESS" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="2" USE="true">
+    <Regex key="EXTROM_TEST" value="ExtRom Test (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_TEST" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="2" USE="true" />
+  <Items itemName="INPUT_ESC" cmd="[ESC]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="DISCONNECT_COMPORT_EXTERN" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="2" USE="true" />
+  <Items itemName="CONNECT_COMPORT_EXTERN" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="3" USE="true" />
+  <Items itemName="METER_TEST_BY_COM_READY" cmd="L 1" compStr="ExtRom Test SUCCESS" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="3" USE="true">
+    <Regex key="EXTROM_TEST" value="ExtRom Test (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_TEST" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="3" USE="true" />
+  <Items itemName="INPUT_ESC" cmd="[ESC]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="DISCONNECT_COMPORT_EXTERN" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="3" USE="true" />
+  <Items itemName="LOOP_BACK" cmd="L 3" compStr="Loop Back SUCCESS" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CONNECT_COMPORT_EXTERN" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="4" USE="true" />
+  <Items itemName="AT_CMD_TEST_COMPORT" cmd="at" compStr="OK" compStrCheckMode="true" timeout="4" SkipCond="" regexCheckRetry="3" option="4" USE="true" />
+  <Items itemName="DISCONNECT_COMPORT_EXTERN" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="4" USE="true" />
+  <Items itemName="CHECK_MODEM_INFO" cmd="system info" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="FIRMWARE_VERSION[\s,]+: Kepco_V(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Modem_Type" value="HARDWARE_VERSION[\s,]+: (?&lt;value&gt;.*)" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METER_INTERVAL" value="MAIN_METERING_INTERVAL[\s,]+: (?&lt;value&gt;.*)." validValue="15 Min" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RESET_INTERVAL" value="RESET_INTERVAL[\s,]+: (?&lt;value&gt;.*) Min." validValue="1440" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_AMR_SERVER" cmd="router info" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="SERVER_IP" value="AMR_SERVER_IP[\s,]+: (?&lt;value&gt;.*)" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SERVER_PORT" value="AMR_SERVER_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="16000" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="FACTORY_SET" cmd="system factory" compStr="Factory Setting Reset" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="COMPLETE_Factory_SET" cmd="" compStr="( SUCCESS )" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="MIU_TEST_WAIT" cmd="" compStr="MIU Test mode[Y/N]?" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="MIU_TEST" cmd="Y" compStr="[Init System Processor]" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="task_WDOG Creater" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="BOOT" cmd="R 1" compStr="SUCCESS Factorytest Mode complete" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Init_SystemVariable" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="VALIDATION" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>
+
+

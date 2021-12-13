@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BOOTING" cmd="" compStr="[Meter PreScan Start]" compStrCheckMode="true" timeout="150" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="kepconuri" compStr="Password Verified!" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="USIM_TEST" cmd="a m" compStr="x231LT_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="6" option="" USE="true">
+    <Regex key="ATCMD_TEST" value="AtCmd:[\s,]+(?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SIM_TEST" value="SimTest:[\s,]+(?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMEI" value="IMEI:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Telecom Number" value="CNUM:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:11]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMSI" value="IMSI:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ICC" value="ICCID:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:19]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="VALIDATION" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="METER_LOOPBACK" cmd="a d [METER_LAST2_CHAR]" compStr="LOOPTEST OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="2" option="" USE="true" />
+  <Items itemName="MODULE_BYPASS_ENTER" cmd="b" compStr="-Start" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="READ_CRSM_NEW" cmd="AT+CRSM=176,28539,0,0,12" compStr="OK" compStrCheckMode="true" timeout="2" SkipCond="NEED_SET_CRSM" regexCheckRetry="3" option="" USE="true">
+    <Regex key="NEW_CRSM" value="[0-9A-Z]{24}" validValue="[NEW_CRSM]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_SECURE_KEY" cmd="AT$FWVERIFY=3" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SECURITY_KEY" value="RIFY:3,(?&lt;value&gt;.*)" validValue="KEP8621000001_sign.der" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_SECURE_HASH" cmd="AT$SNMP=&quot;LASTFWHASH&quot;" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SECURITY_HASH" value="LASTFWHASH:(?&lt;value&gt;.*)" validValue="51c5db5863ebe1daf2585e9127caef41a3694200b573e69995ea14dabca87f2d" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_MODULE_PROPERTY" cmd="AT$SNMP" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="false">
+    <Regex key="CHECK_SYSSERIAL" value="SYSSERIAL:(?&lt;value&gt;.*)" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="CHECK_SYSMODEL" value="SYSMODEL:(?&lt;value&gt;.*)" validValue="NAMR-G231LT" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="CHECK_MGWT" value="MGWT:(?&lt;value&gt;.*)" validValue="[TYPE_NUM]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_FEP" cmd="AT$FEP" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FEP_PORT" value="FEPAMIPORT:(?&lt;value&gt;.*)" validValue="3110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_TRAP_PORT" value="FEPTRAPPORT:(?&lt;value&gt;.*)" validValue="7778" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RO" value="FEPACODERO:(?&lt;value&gt;.*)" validValue="kepfepro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RW" value="FEPACODERW:(?&lt;value&gt;.*)" validValue="kepfeprw" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPFQDN" value="FEPFQDN:(?&lt;value&gt;.*)" validValue="KEP8000000001.kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPREALM" value="FEPREALM:(?&lt;value&gt;.*)" validValue="kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SEC" cmd="AT$SEC" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SEC_PORT" value="SECSERVERPORT:(?&lt;value&gt;.*)" validValue="12083" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_TITLE" value="SYST:(?&lt;value&gt;.*)" validValue="[CERT_NUM]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_DTLS" value="DTLS:(?&lt;value&gt;.*)" validValue="[CERT_NUM].kepco.com.der" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_EAP" value="EAP:(?&lt;value&gt;.*)" validValue="[CERT_NUM]_sign.der" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SNMT" cmd="AT$SNMP" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SNMP_PORT" value="SERVERPORT:(?&lt;value&gt;.*)" validValue="161" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_TRAP_PORT" value="TRAPPORT:(?&lt;value&gt;.*)" validValue="162" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RO" value="PWRO:(?&lt;value&gt;.*)" validValue="kepsnmpro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RW" value="PWRW:(?&lt;value&gt;.*)" validValue="kepsnmprw" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_CRSM" cmd="AT+CRSM=176,28539,0,0,12" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="READ_CRSM" value="54F080" validValue="54F080" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_CRSM" cmd="AT+CRSM=176,28539,0,0,12" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="READ_CRSM" value="54F060" validValue="54F060" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_CRSM" cmd="AT+CRSM=176,28539,0,0,12" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="READ_CRSM" value="54F003" validValue="54F003" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MODULE_BYPASS_ESCAPE" cmd="[ESC]" compStr="x231LT_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="x231LT_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_FEP" cmd="a c 1" compStr="x231LT_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FEP_IP" value="FEP IP[\s,]+:(?&lt;value&gt;.*)" validValue="[FEP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_PORT" value="FEP PORT[\s,]+: (?&lt;value&gt;.*)" validValue="3110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_TRAP_PORT" value="Trap PORT[\s,]+: (?&lt;value&gt;.*)" validValue="7778" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RO" value="ACODE RO[\s,]+: (?&lt;value&gt;.*)" validValue="kepfepro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RW" value="ACODE RW[\s,]+: (?&lt;value&gt;.*)" validValue="kepfeprw" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPFQDN" value="FEPFQDN[\s,]+: (?&lt;value&gt;.*)" validValue="KEP8000000001.kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPREALM" value="FEPREALM[\s,]+: (?&lt;value&gt;.*)" validValue="kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SEC" cmd="a c 2" compStr="x231LT_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SIP_IP" value="SEC IP[\s,]+:(?&lt;value&gt;.*)" validValue="[SIP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SEC_PORT" value="SECSERVERPORT[\s,]+: (?&lt;value&gt;.*)" validValue="12083" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_TITLE" value="SEC_SYST[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_DTLS" value="SEC_DTLS[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM].kepco.com.der" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_EAP" value="SEC_EAP[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM]_sign.der" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SNMT" cmd="a c 3" compStr="x231LT_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SNMP_IP" value="SNMP IP[\s,]+:(?&lt;value&gt;.*)" validValue="[SNMP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PORT" value="SERVERPORT[\s,]+: (?&lt;value&gt;.*)" validValue="161" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_TRAP_PORT" value="TRAP PORT[\s,]+: (?&lt;value&gt;.*)" validValue="162" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RO" value="PWRO[\s,]+: (?&lt;value&gt;.*)" validValue="kepsnmpro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RW" value="PWRW[\s,]+: (?&lt;value&gt;.*)" validValue="kepsnmprw" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_FW_VERSION" cmd="a b" compStr="x231LT_CLI&gt;" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FW_Ver" value="FW Build:[\s,]+: (?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_PROPERTY" cmd="a b" compStr="x231LT_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="false">
+    <Regex key="Module_Ver" value="FW Version:[\s,]+: (?&lt;value&gt;.*)" validValue="V0.2.00 V66" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_IP" value="FEP_IP[\s,]+: (?&lt;value&gt;.*)" validValue="[FEP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_PORT" value="FEP_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="3110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_TRAP_PORT" value="FEP_TRAP[\s,]+: (?&lt;value&gt;.*)" validValue="7778" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_BYPASS_PORT" value="BYPASS[\s,]+: (?&lt;value&gt;.*)" validValue="11470" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SIP_IP" value="SEC_IP[\s,]+: (?&lt;value&gt;.*)" validValue="[SIP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SEC_PORT" value="SEC_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="12083" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_TITLE" value="System Title[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_DTLS" value="System DTLS[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM].kepco.com.der" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSTEM_EAP" value="System EAP[\s,]+: (?&lt;value&gt;.*)" validValue="[CERT_NUM]_sign.der" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RO" value="ACODE_RO[\s,]+: (?&lt;value&gt;.*)" validValue="kepfepro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ACODE_RW" value="ACODE_RW[\s,]+: (?&lt;value&gt;.*)" validValue="kepfeprw" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_IP" value="SNMP IP[\s,]+: (?&lt;value&gt;.*)" validValue="[SNMP_IP_READ]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PORT" value="SNMP PORT[\s,]+: (?&lt;value&gt;.*)" validValue="161" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_TRAP_PORT" value="SNMP TRAPIP PORT[\s,]+: (?&lt;value&gt;.*)" validValue="162" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSSERIAL" value="SYSSERIAL[\s,]+: (?&lt;value&gt;.*)" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYSMODEL" value="SYSMODEL[\s,]+: (?&lt;value&gt;.*)" validValue="NAMR-G231LT" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DIV" value="DIV\(0~180\):[\s,]+: (?&lt;value&gt;.*)" validValue="10" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="PUSHPOLLING" value="PushOrPolling[\s,]+: (?&lt;value&gt;.*) \(1:poll, 2:push\)" validValue="2" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RO" value="SNMP_PW_RO[\s,]+: (?&lt;value&gt;.*)" validValue="kepsnmpro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP_PW_RW" value="SNMP_PW_RW[\s,]+: (?&lt;value&gt;.*)" validValue="kepsnmprw" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPFQDN" value="FEPFQDN[\s,]+: (?&lt;value&gt;.*)" validValue="KEP8000000001.kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPREALM" value="FEPREALM[\s,]+: (?&lt;value&gt;.*)" validValue="kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_RSRP" cmd="a c 17" compStr="x231LT_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="5" option="" USE="true">
+    <Regex key="ANT0_RSRP" value=":: RSRP : (?&lt;value&gt;.*)\, O K OK" validValue="[MIN:-85]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WATCHDOG" cmd="w 0 3 1 4" compStr="WDOG Task Create" compStrCheckMode="true" timeout="70" SkipCond="" regexCheckRetry="2" option="" USE="true">
+    <Regex key="RESET_CHECK" value="Application (?&lt;value&gt;.*) vector" validValue="Reset" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>

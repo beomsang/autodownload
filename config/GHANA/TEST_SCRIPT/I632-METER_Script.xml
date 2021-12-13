@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="300" SkipCond="" regexCheckRetry="1" USE="true" /> 
+  <Items itemName="BOOT_CHECK" cmd="[ENTER]" compStr="nuri-aimir-dcu login:" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="root" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="true" timeout="80" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_SW_VERSION" cmd="cat /app/info/package.info | grep Package" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="v(?&lt;value&gt;.*) " validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value=" [0-9a-zA-Z]{6}.[0-9a-zA-Z]{7}.[0-9a-zA-Z]{3}" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="GPRS_START" cmd="/app/ppp/boot/le910 start" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="40" SkipCond="" regexCheckRetry="2" USE="true" />
+  <Items itemName="MOVE_DIR" cmd="cd /app/mterm" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_MOBILE" cmd="./mterm /dev/ttyACM0" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" >
+    <Regex key="ATZ" value="ATZ" validValue="ATZ" isGetAttribute="true" isChecked="false" realValue="" />  
+    <Regex key="OK" value="OK" validValue="OK" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items>  
+  <Items itemName="INPUT_ETX" cmd="[ETX]" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_EUIID" cmd="cat /app/conf/default.conf | grep serial" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="EUI64ID" value="serial = (?&lt;value&gt;.*)" validValue="[LENGTH:16]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MOVE_DIR" cmd="cd /app/conf" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_WATCHDOG" cmd="crontab -e" compStr="/var/spool/cron/crontabs" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="WATCHDOG" value="/script/watchdog.sh" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="WATCHDOG2" value="/app/boot27/S99uSshd (?&lt;value&gt;.*)" validValue="start" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="EXIT_EDIT" cmd=":q!" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="5" USE="true"/>
+  <Items itemName="MOVE_DIR" cmd="cd /app/strongSwan/sbin" compStr="root@nuri-aimir-dcu" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_IPSEC" cmd="./ipsec start" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="IPSEC" value="Starting strongSwan (?&lt;value&gt;.*)..." validValue="5.4.0 IPsec [starter]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_RUN_AGENT" cmd="ls -al /etc/nuri" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" >
+    <Regex key="AGENT" value="auto01 ->[\s,]+(?&lt;value&gt;.*)" validValue="/app/bin/agent" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items> 
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_RUN_AGENT2" cmd="ps" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="15" USE="true" >
+    <Regex key="AGENT_PANA" value="/app/bin/PANA_(?&lt;value&gt;.*)" validValue="agent" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="AGENT_SNMP" value="/app/bin/SNMP_agent -c (?&lt;value&gt;.*)" validValue="/app/snmp/sbin/snmpd.conf" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items> 
+  <Items itemName="RUN_CLI" cmd="telnet localhost:23" compStr="User:" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INPUT_ACCOUNT" cmd="aimir" compStr="Password:" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="aimir" compStr="AIMIR>" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_VERSION_INFO" cmd="show system revision" compStr="AIMIR>" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" >
+   <Regex key="KERNEL_VERSION" value="OS: (?&lt;value&gt;.*)" validValue="3.2.0-n181112" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ROM" value="ROM: (?&lt;value&gt;.*)" validValue="1.2.1.20161129.01" isGetAttribute="true" isChecked="false" realValue="" />   
+  </Items>    
+  <Items itemName="CHECK_CONFIGURATION" cmd="show system summary" compStr="AIMIR>" timeout="5" SkipCond="" regexCheckRetry="5" USE="true" >
+    <Regex key="EUI64ID" value="DCU Serial: (?&lt;value&gt;.*)[\s,]+DCU TYPE" validValue="[LENGTH:16]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TIMEZONE" value="TimeZone: (?&lt;value&gt;.*)" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>   
+  <Items itemName="CHECK_PROPERTY" cmd="show property" compStr="AIMIR>" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" >
+   <Regex key="3pass.retry.count" value="3pass.retry.count:[\s,]+(?&lt;value&gt;.*)" validValue="3" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="3pass.retry.interval" value="3pass.retry.interval:[\s,]+(?&lt;value&gt;.*)" validValue="10" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="3pass.timeout" value="3pass.timeout:[\s,]+(?&lt;value&gt;.*)" validValue="60" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="discovery.interval" value="discovery.interval:[\s,]+(?&lt;value&gt;.*)" validValue="10" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="event.filter.mask.all.default" value="event.filter.mask.all.default:[\s,]+(?&lt;value&gt;.*)" validValue="on" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="event.filter.severity.all.default" value="event.filter.severity.all.default:[\s,]+(?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="idcu.mode" value="idcu.mode:[\s,]+(?&lt;value&gt;.*)" validValue="normal" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="idcu.wan.device" value="idcu.wan.device:[\s,]+(?&lt;value&gt;.*)" validValue="ppp0" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="idcu.wan.device.backup" value="idcu.wan.device.backup:[\s,]+(?&lt;value&gt;.*)" validValue="eth0" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="if4.proto.type.cli" value="if4.proto.type.cli:[\s,]+(?&lt;value&gt;.*)" validValue="TCP" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="if4.proto.type.default" value="if4.proto.type.default:[\s,]+(?&lt;value&gt;.*)" validValue="TCP" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="if4.proto.type.event" value="if4.proto.type.event:[\s,]+(?&lt;value&gt;.*)" validValue="TLS" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="if4.proto.type.upload" value="if4.proto.type.upload:[\s,]+(?&lt;value&gt;.*)" validValue="TLS" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ipsec.id.server" value="ipsec.id.server:[\s,]+(?&lt;value&gt;.*)" validValue="@nuri-vpn-01" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ipsec.ipv4.server" value="ipsec.ipv4.server:[\s,]+(?&lt;value&gt;.*)" validValue="172.16.10.128" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ipsec.ipv4.server.eth" value="ipsec.ipv4.server.eth:[\s,]+(?&lt;value&gt;.*)" validValue="172.16.10.128" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ipsec.ipv4.server.ppp" value="ipsec.ipv4.server.ppp:[\s,]+(?&lt;value&gt;.*)" validValue="192.168.10.116" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ipsec.subnet.server" value="ipsec.subnet.server:[\s,]+(?&lt;value&gt;.*)" validValue="fd80:0000:0000:0000::/64" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="meter.sharedkey.enable.default" value="meter.sharedkey.enable.default:[\s,]+(?&lt;value&gt;.*)" validValue="on" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="metering.count.default" value="metering.count.default:[\s,]+(?&lt;value&gt;.*)" validValue="2" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="metering.forced.save" value="metering.forced.save:[\s,]+(?&lt;value&gt;.*)" validValue="on" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="metering.offset.default" value="metering.offset.default:[\s,]+(?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="metering.option.default" value="metering.option.default:[\s,]+(?&lt;value&gt;.*)" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="metering.romread.count.max" value="metering.romread.count.max:[\s,]+(?&lt;value&gt;.*)" validValue="10" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="network.down.interval" value="network.down.interval:[\s,]+(?&lt;value&gt;.*)" validValue="1440" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="network.down.reset.enable" value="network.down.reset.enable:[\s,]+(?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="network.expired.interval" value="network.expired.interval:[\s,]+(?&lt;value&gt;.*)" validValue="7" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="network.retry.default" value="network.retry.default:[\s,]+(?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="network.timeout.default" value="network.timeout.default:[\s,]+(?&lt;value&gt;.*)" validValue="15" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="nms.trap.enable.default" value="nms.trap.enable.default:[\s,]+(?&lt;value&gt;.*)" validValue="on" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ota.payload.size.coordinator" value="ota.payload.size.coordinator:[\s,]+(?&lt;value&gt;.*)" validValue="1024" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ota.payload.size.max" value="ota.payload.size.max:[\s,]+(?&lt;value&gt;.*)" validValue="256" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.addr.dest.default" value="parser.dlms.addr.dest.default:[\s,]+(?&lt;value&gt;.*)" validValue="0x01" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="node.NAMR-C108SR" value="parser.dlms.addr.dest.node.NAMR-C108SR:[\s,]+(?&lt;value&gt;.*)" validValue="0x4010" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="node.NAMR-P20CSR" value="parser.dlms.addr.dest.node.NAMR-P20CSR:[\s,]+(?&lt;value&gt;.*)" validValue="0x4010" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="node.NAMR-P20DSR" value="parser.dlms.addr.dest.node.NAMR-P20DSR:[\s,]+(?&lt;value&gt;.*)" validValue="0x4000" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="node.NAMR-P20DSR" value="parser.dlms.addr.rule.node.NAMR-P20DSR:[\s,]+(?&lt;value&gt;.*)" validValue="-12" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.addr.source.hls.default" value="parser.dlms.addr.source.hls.default:[\s,]+(?&lt;value&gt;.*)" validValue="0x01" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.addr.source.lls.default" value="parser.dlms.addr.source.lls.default:[\s,]+(?&lt;value&gt;.*)" validValue="0x20" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.imagetr.check.verify" value="parser.dlms.imagetr.check.verify:[\s,]+(?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.imagetr.check.verify.interval" value="parser.dlms.imagetr.check.verify.interval:[\s,]+(?&lt;value&gt;.*)" validValue="300" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="metermodel.NRAM-1405DR60" value="parser.dlms.imgkey.metermodel.NRAM-1405DR60:[\s,]+(?&lt;value&gt;.*)" validValue="WASION--aM100(M1EG)V1.0-\0\0\0\03" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="metermodel.NRAM-3410DR100" value="parser.dlms.imgkey.metermodel.NRAM-3410DR100:[\s,]+(?&lt;value&gt;.*)" validValue="WASION--aM300MV3.1DC341-\0\0\0\03" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="metermodel.NRDT-1205DR60" value="parser.dlms.imgkey.metermodel.NRDT-1205DR60:[\s,]+(?&lt;value&gt;.*)" validValue="WASION--DDSD101-DT61-0-0-\0\0\0\03" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.security.ciphering.type.default" value="parser.dlms.security.ciphering.type.default:[\s,]+(?&lt;value&gt;.*)" validValue="svc-glo" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.security.code.default" value="parser.dlms.security.code.default:[\s,]+(?&lt;value&gt;.*)" validValue="0x30" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.security.nonce.size.default" value="parser.dlms.security.nonce.size.default:[\s,]+(?&lt;value&gt;.*)" validValue="8" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.security.passwd.default" value="parser.dlms.security.passwd.default:[\s,]+(?&lt;value&gt;.*)" validValue="33333333" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.security.type.default" value="parser.dlms.security.type.default:[\s,]+(?&lt;value&gt;.*)" validValue="0x02" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.security.type.node.NAMR-P20DSR" value="parser.dlms.security.type.node.NAMR-P20DSR:[\s,]+(?&lt;value&gt;.*)" validValue="0x01" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="parser.dlms.selector.default" value="parser.dlms.selector.default:[\s,]+(?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="perf.evt.queue.policy" value="perf.evt.queue.policy:[\s,]+(?&lt;value&gt;.*)" validValue="remove_new" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="perf.evt.queue.size" value="perf.evt.queue.size:[\s,]+(?&lt;value&gt;.*)" validValue="100" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="scanning.delay" value="scanning.delay:[\s,]+(?&lt;value&gt;.*)" validValue="15" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="scanning.retry.delay" value="scanning.retry.delay:[\s,]+(?&lt;value&gt;.*)" validValue="3600" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="server.conf.crc.AUTH" value="server.conf.crc.AUTH:[\s,]+(?&lt;value&gt;.*)" validValue="50570" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="server.conf.crc.FEP" value="server.conf.crc.FEP:[\s,]+(?&lt;value&gt;.*)" validValue="5328" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="server.conf.crc.SNMP" value="server.conf.crc.SNMP:[\s,]+(?&lt;value&gt;.*)" validValue="48564" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="snmp.trap.enable.default" value="snmp.trap.enable.default:[\s,]+(?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="subgiga.module.check" value="subgiga.module.check:[\s,]+(?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="subgiga.module.disabled.interval" value="subgiga.module.disabled.interval:[\s,]+(?&lt;value&gt;.*)" validValue="300" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="timesync.interval" value="timesync.interval:[\s,]+(?&lt;value&gt;.*)" validValue="480" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="upload.bundle.max.default" value="upload.bundle.max.default:[\s,]+(?&lt;value&gt;.*)" validValue="100" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="watchdog.debug.enable.default" value="watchdog.debug.enable.default:[\s,]+(?&lt;value&gt;.*)" validValue="false" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="watchdog.enable.default" value="watchdog.enable.default:[\s,]+(?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="watchdog.exec.delay.commerror" value="watchdog.exec.delay.commerror:[\s,]+(?&lt;value&gt;.*)" validValue="15" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="watchdog.exec.delay.hangup" value="watchdog.exec.delay.hangup:[\s,]+(?&lt;value&gt;.*)" validValue="10" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="watchdog.exec.delay.init" value="watchdog.exec.delay.init:[\s,]+(?&lt;value&gt;.*)" validValue="50" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items> 
+  <Items itemName="DELETE_MODEM" cmd="delete modem all" compStr="AIMIR>" timeout="2" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="DELETE_METER" cmd="delete meter all" compStr="AIMIR>" timeout="2" SkipCond="" regexCheckRetry="3" USE="true" >
+   <Regex key="METER_COUNT" value="Err:(?&lt;value&gt;.*)" validValue="No entry" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items> 
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

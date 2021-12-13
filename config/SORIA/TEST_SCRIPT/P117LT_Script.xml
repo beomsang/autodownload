@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="70" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT_BOOT" cmd="" compStr="SMS Task Create" compStrCheckMode="true" timeout="90" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT_FOR_PASSWORD" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="nurisoriam" compStr="Password Verified" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INFO_CHECK" cmd="?" compStr="P117LT_CLI>" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="FW_Ver:(?&lt;value&gt;.*) Build" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value="Build_NUM:(?&lt;value&gt;.*) HW_Ver:" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="HW_Ver:(?&lt;value&gt;.*)\b" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="EUID" value="EUI_ID : (?&lt;value&gt;.*)\b" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WAIT" cmd="" compStr="" timeout="10" SkipCond="" regexCheckRetry="1" USE="true"/>
+  <Items itemName="PARAMETER_CHECK" cmd="c" compStr="P117LT_CLI>" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Meter Serial" value="Meter Serial Number : (?&lt;value&gt;.*)" validValue="[METER_SERIAL]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Reset Time" value="ResetTime\s+: (?&lt;value&gt;.*) Hour" validValue="6" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Model Name" value="Model Name\s+: (?&lt;value&gt;.*)" validValue="NAMR-P117LT" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Modem Status" value="Modem Status\s+: (?&lt;value&gt;.*)" validValue="0x00" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Modem Mode" value="Modem Mode\s+: (?&lt;value&gt;.*)" validValue="MODEM_MODE_Push" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Metering Interval" value="Metering Interval\s+: (?&lt;value&gt;.*) sec" validValue="10800" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Push Interval" value="Push Interval\s+: (?&lt;value&gt;.*) sec" validValue="10800" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HES IP" value="HES IP\s+: (?&lt;value&gt;.*)" validValue="10. 40.200.211" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP Server IP" value="SNMP Server IP\s+: (?&lt;value&gt;.*)" validValue="10. 40.200.211" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HES Auth Port" value="HES Auth Port\s+: (?&lt;value&gt;.*)" validValue="9001" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HES TLS Server Port" value="HES TLS Server Port\s+: (?&lt;value&gt;.*)" validValue="8004" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HES TLS Client Port" value="HES TLS Client Port\s+: (?&lt;value&gt;.*)" validValue="8001" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNMP Server Port" value="SNMP Server Port\s+: (?&lt;value&gt;.*)" validValue="161" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="COAP Port" value="COAP Port\s+: (?&lt;value&gt;.*)" validValue="5683" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="SET_HISTORY_PRINT" cmd="d 1 1" compStr="P117LT_CLI>" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true"/>
+  <Items itemName="HISTORY_PRINT" cmd="z 4" compStr="P117LT_CLI>" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true"/>
+  <Items itemName="RESET" cmd="r 0 3 1 4" compStr="SMS Task Create" compStrCheckMode="true" timeout="90" SkipCond="" regexCheckRetry="3" USE="true"/>
+  <Items itemName="WAIT_FOR_PASSWORD" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="nurisoriam" compStr="Password Verified" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="Factory mode" cmd="t 99 255" compStr="MFG_CLI Task Create" compStrCheckMode="true" timeout="17" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="3-Pass" cmd="n 2 1" compStr="execute 3-Pass Auth" timeout="5" compStrCheckMode="true" SkipCond="" regexCheckRetry="3" USE="true"/>
+  <Items itemName="MFG_RELEASE" cmd="r 1" compStr="R 1: Success" timeout="5" compStrCheckMode="true" SkipCond="" regexCheckRetry="3" USE="true"/>
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="20" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Hit any key to stop autoboot:" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="U-Boot# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SETEVN_SERVER" cmd="setenv serverip 192.168.10.10" compStr="U-Boot# " compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SETEVN_IPADDR" cmd="setenv ipaddr 192.168.10.100" compStr="U-Boot# " compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SETEVN_NETMASK" cmd="setenv netmask 255.255.255.0" compStr="U-Boot# " compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SETEVN_GATEWAY" cmd="setenv gatewayip 192.168.10.1" compStr="U-Boot# " compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="KERNEL_DOWNLOAD_TFTP" cmd="tftp 0x82000000 uImage.3.2.0-n180411" compStr="U-Boot# " compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" >
+    <Regex key="DOWNLOAD_RESULT" value="done" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="NAND_ERASE" cmd="nand erase 0x002c0000 0x300000" compStr="U-Boot# " compStrCheckMode="false" timeout="50" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="ERASE_RESULT" value="-- 100% complete" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="NAND_WRITE" cmd="nand write 0x82000000 0x002c0000 0x2f8a58" compStr="U-Boot# " compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="WRITE_RESULT" value="written: (?&lt;value&gt;.*)" validValue="OK" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="SF_PROBE" cmd="sf probe" compStr="U-Boot# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="SF_ERASE" cmd="sf erase 0x90000 +300000" compStr="U-Boot# " compStrCheckMode="false" timeout="80" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="SF_WRITE" cmd="sf write 0x82000000 0x90000 0x2f8a58" compStr="U-Boot# " compStrCheckMode="false" timeout="80" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="SF_PROBE" cmd="sf probe" compStr="U-Boot# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SF_ERASE" cmd="sf erase 0x80000 0x1000" compStr="U-Boot# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="5" USE="true" />
+  <Items itemName="RESET" cmd="reset" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Hit any key to stop autoboot:" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="U-Boot# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_NAND_BOOT" cmd="setenv bootcmd run nandboot" compStr="U-Boot# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_ENV" cmd="setenv user_arg hwver=0.7 boot=NAND USERBOOT" compStr="U-Boot# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="1" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_NAND" cmd="boot" compStr="Booting from nand ..." compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT_INPUT_ACCOUNT" cmd="" compStr="nuri-aimir-dcu login:" compStrCheckMode="true" timeout="90" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="root" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="DELETE_APP_FOLDER" cmd="rm -rf /app/*" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="NAND_FORMAT" cmd="ubidetach /dev/ubi_ctrl -d 0" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="NAND_FORMAT" cmd="ubiformat /dev/mtd6 -s 4096 -O 4096 -y > /dev/null" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="150" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="NAND_FORMAT" cmd="ubiattach /dev/ubi_ctrl -m 6 -d 0 -O 4096" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="NAND_FORMAT" cmd="ubimkvol /dev/ubi0 -N filestore -m" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="MOUNT" cmd="mount -t ubifs ubi0:filestore /app" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="ETH0_DOWN" cmd="ifconfig eth0 down" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_ETH0_IP" cmd="ifconfig eth0 192.168.10.110" compStr="eth0: link becomes ready" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="AUTO_NEG_OFF" cmd="ethtool -s eth0 autoneg off" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="AUTO_NEG_OFF" cmd="ethtool -s eth1 autoneg off" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="MOVE_DIRECTORY" cmd="cd /" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="FW_DOWNLOAD_TFTP" cmd="tftp -g -r &quot;[FW_FILE_NAME]&quot; 192.168.10.10" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="COMPLETE_DOWN" value="100%" validValue="100%" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DECOMPRESSION_FW_FILE" cmd="tar zxvf &quot;[FW_FILE_NAME]&quot; -C / > /dev/null" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="4" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="4" SkipCond="" regexCheckRetry="5" USE="true" />
+  <Items itemName="DELETE_FW_FILE" cmd="rm &quot;[FW_FILE_NAME]&quot;" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SYNC" cmd="sync" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="TIME SYNC1" cmd="date -s &quot;[TIME:yyyy-MM-dd hh:mm:ss]&quot;" compStr="root@nuri-aimir-dcu" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="TIME SYNC2" cmd="hwclock --localtime --systohc" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SYNC" cmd="chattr \+S /app/conf" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SYNC" cmd="chattr \+S /app/db" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="DELETE_FACTORYCOMP_FILE" cmd="rm /app/conf/.factoryTestCompleted" compStr="root@nuri-aimir-dcu:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="REBOOT" cmd="reboot" compStr="Booting from spi ..." compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="nuri-aimir-dcu login:" compStrCheckMode="true" timeout="80" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="root" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_SW_VERSION" cmd="cat /app/info/package.info | grep Package" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="ipdcu v(?&lt;value&gt;.*) " validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value=" [0-9a-zA-Z]{6}.[0-9a-zA-Z]{7}.[0-9a-zA-Z]{3}" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="ETH0_DOWN" cmd="ifconfig eth0 down" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_ETHO_IP" cmd="ifconfig eth0 192.168.10.110" compStr="eth0: link becomes ready" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="5" USE="true" />
+  <Items itemName="ETH0_UP" cmd="ifconfig eth0 up" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="ETH0_PING" cmd="ping 192.168.10.10 -c 3" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="7" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="Packet Loss" value="packets received, (?&lt;value&gt;.*)% packet loss" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="ETH0_DOWN" cmd="ifconfig eth0 down" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="ETH1_IP_SET" cmd="ifconfig eth1 192.168.11.111" compStr="eth1: link becomes ready" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="5" USE="true" />
+  <Items itemName="ETH1_UP" cmd="ifconfig eth1 up" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="ETH1_PING" cmd="ping 192.168.11.11 -c 3" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="7" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="Packet Loss" value="packets received, (?&lt;value&gt;.*)% packet loss" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="ETH1_DOWN" cmd="ifconfig eth1 down" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="ETH2_IP_SET" cmd="ifconfig eth2 192.168.12.112" compStr="Link is now UP" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="5" USE="true" />
+  <Items itemName="ETH2_UP" cmd="ifconfig eth2 up" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="ETH2_PING" cmd="ping 192.168.12.12 -c 3" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="7" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="Packet Loss" value="packets received, (?&lt;value&gt;.*)% packet loss" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="ETH2_DOWN" cmd="ifconfig eth2 down" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_MAC_ADD" cmd="ifconfig eth0 | grep ^eth | awk '{print $5}'" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="MAC_ADD" value="[0-9a-zA-Z]{2}:[0-9a-zA-Z]{2}:[0-9a-zA-Z]{2}:[0-9a-zA-Z]{2}:[0-9a-zA-Z]{2}:[0-9a-zA-Z]{2}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="SET_DCU_SERIAL" cmd="sed -i '7s/.*$/dcuSerial = [DCU_SERIAL]/' /app/conf/kepco/var.conf" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_MODEL_NUMBER" cmd="sed -i '8s/.*$/dcuModel = [DCU_MODEL_NUMBER]/' /app/conf/kepco/var.conf" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_DCU_MODEL_TYPE" cmd="sed -i '16s/.*$/DcuType = [DCU_TYPE]/' /app/conf/kepco/var.conf" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SYNC" cmd="sync" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_CONFIGURATION" cmd="cat /app/conf/kepco/var.conf" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="DCU_SERIAL" value="dcuSerial = (?&lt;value&gt;.*)" validValue="[DCU_SERIAL]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DCU_MODEL" value="dcuModel = (?&lt;value&gt;.*)" validValue="[DCU_MODEL_NUMBER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DCU_TYPE" value="DcuType = [0-9]{1}" validValue="DcuType = [DCU_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_DATA_PORT" value="fepDataPort = (?&lt;value&gt;.*)" validValue="3110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_TRAP_PORT" value="fepTrapPort = (?&lt;value&gt;.*)" validValue="7778" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SYS_MIB_ENCRYPT" value="sysMIBEncrypt = (?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="POWERUP_TRAP_RECV" value="PowerupTrapRecv = (?&lt;value&gt;.*)" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="REG_AVAIL_CODE" value="RegAvailCode = (?&lt;value&gt;.*)" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="EXECUTE_TUNSLIPT_SCRIPT" cmd="/app/script/tunslip.sh" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="HARDWARE_TEST" cmd="/app/bin/hwtest --hw-ver=0.7 --mem-size=512 --wisun-hw-ver=2.0 --wisun-fw-ver=1.6 --wisun-build=1.0 --wisun-tx-power=4" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Test Result" value="Test Result \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_KERNEL_VERSION" cmd="uname -a" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+   <Regex key="KERNEL_VERSION" value="Linux nuri-aimir-dcu (?&lt;value&gt;.*) \#" validValue="3.2.0-n180411" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CREATE_FactoryComp_File" cmd="touch /app/conf/.factoryTestCompleted" compStr="root@nuri-aimir-dcu:~# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

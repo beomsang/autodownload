@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CONNECT_RF_TESTER" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="FW_DOWNLOAD" cmd="[FILE:LOS_Test_LE_UART0_CC1190_with_boot_160921.bin]" compStr="OK" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Thread_Router_CLI created!" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="Input Enter" cmd="[ENTER]" compStr="TEST_CLI>" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="RF_MAIN_STEP_START" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CHANNEL_SET" cmd="c [RF_CH_NUM]" compStr="TEST_CLI>" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="RF_RX_MODE_SET" cmd="a" compStr="TEST_CLI>" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="TESTER_RF_BURST" cmd="[RF_CH]" compStr="" timeout="60" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_RX_MEASURE" cmd="" compStr="" timeout="60" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_MAIN_STEP_END" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_MAIN_STEP_START" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CHANNEL_SET" cmd="c [RF_CH_NUM]" compStr="TEST_CLI>" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="TESTER_MEASURE_SET" cmd="[RF_CH]" compStr="" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="4" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_TX_BURST" cmd="s 50 100" compStr="s 50 100" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_TX_MEASURE" cmd="" compStr="" timeout="60" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_MAIN_STEP_END" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="FW_DOWNLOAD" cmd="[FILE:P206SR_with_boot_161024_V0103_B02.bin]" compStr="" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Sched_Start!" timeout="30" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="Input Enter" cmd="[ENTER]" compStr=" Input Password : " timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="Input Password" cmd="aimir" compStr=" Password Verified!" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="APP_TEST" cmd="J 28" compStr=" TEST END" timeout="20" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="EUI64ID" value="[0-9a-zA-Z]{16}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SERIAL FLASH" value="SERIALFLASH = \[OK\]" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METER COMM" value="METER COMM = \[OK\]" validValue="" isGetAttribute="true" isChecked="false" realValue="" />    
+    <Regex key="LED" value="LED = \[OK\]" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_VERSION" cmd="?" compStr="NAMR-P20xSR>" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="F/W Version          : 0x(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value="Build Number         : 0x(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="H/W Version          : 0x(?&lt;value&gt;.*)" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DISCONNECT_RF_TESTER" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

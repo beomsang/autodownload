@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="MANUAL">
+  <Items itemName="CONNECT_RF_TESTER" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="PROCESS_RUN" cmd="STM32_Programmer_CLI.exe -c port=usb1 -fwdelete" compStr="fwdelete command execution finished" compStrCheckMode="false" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="PROCESS_RUN" cmd="STM32_Programmer_CLI.exe -c port=usb1 -r32 0x20030030 1" compStr="0x20030030 :" compStrCheckMode="false" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="PROCESS_RUN" cmd="STM32_Programmer_CLI.exe -c port=usb1 -fwupgrade &quot;[CURRENT_DIR]\Firmware_File\stm32wb5x_FUS_fw.bin&quot; 0x080EC000  firstinstall=0" compStr="File download complete" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="PROCESS_RUN" cmd="STM32_Programmer_CLI.exe -c port=usb1 -fwupgrade &quot;[CURRENT_DIR]\Firmware_File\stm32wb5x_BLE_Stack_fw1_1_0.bin&quot;  0x080CC000  firstinstall=1" compStr="Firmware Upgrade Success" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FW_DOWNLOAD" cmd="[FILE:[FW_FILE_#1]]" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="2" option="" USE="true" />
+  <Items itemName="CONFIRM_CONTINUE" cmd="" compStr="" compStrCheckMode="true" timeout="50" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="50" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BOOTING_WITH_CLI" cmd="" compStr="" compStrCheckMode="true" timeout="50" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="FLASH_TEST" cmd="L 1" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FLASH_CHECK" value="Flash SUCCESS" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_TEST" cmd="L 2" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="METER_CHECK" value="Meter SUCCESS" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="ISSUE_EUI_ID" cmd="" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="20" option="" USE="true" />
+  <Items itemName="WRITE_EUI_ID" cmd="J 1 [EUI_ID_10DIGIT]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="EUIID_CHECK" value="EUI_ID : (?&lt;value&gt;.*)" validValue="[EUI_ID_2CHAR_SPLIT]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WRITE_FINAL_DATE" cmd="J 2 [DATE_SPACE]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="WRITE_RESULT" cmd="J 3" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="SIM_TEST" cmd="M" compStr="M_CLI&gt;" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="AT_TEST" value="AtCmd (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TEST SIMCARD" value="SimTest (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMEI" value="IMEI : (?&lt;value&gt;.*)" validValue="[NOT:000000000000000][LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMSI" value="IMSI : (?&lt;value&gt;.*)" validValue="[NOT:000000000000000][LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ICCID" value="[0-9]{19}" validValue="[NOT:000000000000000][LENGTH:19]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="HW_VERSION_MODIFY" cmd="j 7 2" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_HW_VERSION" cmd="j 8" compStr="M_CLI&gt;" compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="HW_VERSION" value="OPT HW Version : (?&lt;value&gt;.*) Configuration Menu" validValue="2" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_MODEM_INFO" cmd="c" compStr="M_CLI&gt;" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="Modem_Type" value="\*[\s,]+(?&lt;value&gt;.*) Configuration Menu" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FW_Ver" value="FW_Ver:0x(?&lt;value&gt;.*)[\s,]+Build_NUM" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build_Num" value=" Build_NUM:0x(?&lt;value&gt;.*) HW_Ver" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="RF_MAIN_STEP_START" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BLE_TEST_MODE_SET" cmd="L 4" compStr="BLE TM Process" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="READ_HCI_INFORMATION" cmd="" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="HCI_RX_TEST" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="HCI_RSSI_CHECK" cmd="" compStr="" compStrCheckMode="true" timeout="60" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="HCI_RX_TEST_END" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="RF_MAIN_STEP_END" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_MAIN_STEP_START" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="SET_HCI_TX_POWER" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="TESTER_MEASURE_SET" cmd="[RF_CH]" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="HCI_TX_TEST" cmd="" compStr="" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_TX_MEASURE" cmd="" compStr="" compStrCheckMode="true" timeout="60" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_MAIN_STEP_END" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RELEASE_HCI_MODE" cmd="z0314" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="RELEASE_MFG" cmd="R 1" compStr="R 1: Success" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="DISCONNECT_RF_TESTER" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>

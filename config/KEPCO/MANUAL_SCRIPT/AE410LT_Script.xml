@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="AT" compStr="OK" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CHECK_NEED_FW_UPDATE" cmd="AT%NURIREV" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Modem_Type" value="FW_(?&lt;value&gt;.*)_" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_NEED_FW_UPDATE" cmd="AT%DLMS=&quot;VERSION&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="20" USE="true">
+    <Regex key="FW_Ver" value="[0-9]{4}" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_NEED_FW_UPDATE" cmd="AT%DLMS=&quot;MODEM&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Build_Num" value="BUILD \# :[\s,]+(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="SET_DELAY" cmd="AT%SETBDELAY=10" compStr="OK" timeout="5" SkipCond="NEED_FW_UP" regexCheckRetry="3" USE="true" />
+  <Items itemName="FW_DOWNLOAD" cmd="" compStr="" timeout="160" SkipCond="NEED_FW_UP" regexCheckRetry="1" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="NEED_FW_UP" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="5" SkipCond="NEED_FW_UP" regexCheckRetry="1" USE="true" />
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="50" SkipCond="NEED_FW_UP" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="AT" compStr="OK" timeout="30" SkipCond="NEED_FW_UP" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="5" SkipCond="NEED_FW_UP" regexCheckRetry="1" USE="true" />
+  <Items itemName="TYPE_CHECK_" cmd="AT%NURIREV" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="20" USE="true">
+    <Regex key="Modem_Type" value="FW_(?&lt;value&gt;.*)_" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="FW_VERSION_CHECK" cmd="AT%DLMS=&quot;VERSION&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="[0-9]{4}" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_IMSI" cmd="AT+CIMI" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="IMSI" value="[0-9]{15}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_ICC" cmd="AT%CCID" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="ICC" value="[0-9]{19}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_TELECOM_NUMBER" cmd="AT+CNUM" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Telecom Number" value="[0-9]{11}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_IMEI" cmd="AT%GETCFG=&quot;DEBUG_IMEI&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="IMEI" value="[0-9]{15}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_LOOPBACK" cmd="AT%DLMS=&quot;LOOPBACK&quot;,&quot;[METER_LAST2_CHAR]&quot;" compStr="LOOPBACKED" timeout="15" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_DCU_IP" cmd="AT%DLMS=&quot;SETDCU&quot;,&quot;223&quot;,&quot;175&quot;,&quot;251&quot;,&quot;137&quot;,&quot;16000&quot;" compStr="OK" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_DCU_IP" cmd="AT%DLMS=&quot;READDCU&quot;" compStr="OK" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="DCU IP" value="IP : (?&lt;value&gt;.*),PORT" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DCU PORT" value="PORT:(?&lt;value&gt;.*)" validValue="16000" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_MODEM_INFO" cmd="AT%DLMS=&quot;MODEM&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Build_Num" value="BUILD \# :[\s,]+(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;SCAN_LIST&quot;,&quot;0&quot;,&quot;1&quot;,&quot;5&quot;,&quot;1&quot;,&quot;2500&quot;,&quot;2500&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;SCAN_LIST&quot;,&quot;1&quot;,&quot;1&quot;,&quot;5&quot;,&quot;5&quot;,&quot;2400&quot;,&quot;2649&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;SCAN_LIST&quot;,&quot;2&quot;,&quot;1&quot;,&quot;3&quot;,&quot;1&quot;,&quot;1350&quot;,&quot;1350&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;SCAN_LIST&quot;,&quot;3&quot;,&quot;1&quot;,&quot;3&quot;,&quot;5&quot;,&quot;1200&quot;,&quot;1949&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;SCAN_LIST&quot;,&quot;4&quot;,&quot;1&quot;,&quot;5&quot;,&quot;1&quot;,&quot;2500&quot;,&quot;2500&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;SCAN_PLAN_EN&quot;,&quot;1&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETACFG=ecm.Mode.AutoConnectMode,false" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETACFG=APNTable.Class1.Name,&quot;lte-internet.sktelecom.com&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%GMMP=&quot;WRITE&quot;,&quot;31&quot;,&quot;OFF&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%GMMP=&quot;WRITE&quot;,&quot;32&quot;,&quot;ON&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%GMMP=&quot;WRITE&quot;,&quot;0&quot;,&quot; &quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETBDELAY=0" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;PHY_LOG_DISABLE&quot;,&quot;1&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;MAC_LOG_SEV&quot;,&quot;255&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INIT_COMMAND" cmd="AT%SETCFG=&quot;PMP_LOG_SEV&quot;,&quot;255&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="FACTORYRESET" cmd="AT%GMMP=&quot;FACTORYRESET&quot;" compStr="FACTORY RESET DONE" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="VALIDATION" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

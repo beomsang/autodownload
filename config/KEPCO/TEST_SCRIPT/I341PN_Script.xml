@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="20" SkipCond="" regexCheckRetry="1" USE="true" /> 
+  <Items itemName="CHECK_BOOT_SPI" cmd="boot" compStr="Booting from spi ..." timeout="20" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Starting SNMP daemon..." timeout="60" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT_FOR_INPUT_ACCOUNT" cmd="" compStr="User:" compStrCheckMode="true" timeout="120" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ACCOUNT" cmd="aimir" compStr="Password:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="aimir" compStr="AIMIR>" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_VERSION_INFO" cmd="show system revision" compStr="AIMIR>" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" >
+   <Regex key="KERNEL_VERSION" value="OS: (?&lt;value&gt;.*)" validValue="3.2.0-n180411" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="ROM" value="ROM: (?&lt;value&gt;.*)" validValue="1.3.1.20170602.01" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="PACKAGE_VERSION" value="Package: ipdcu (?&lt;value&gt;.*)" validValue="v1.1.0 b220 (24a342f)" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items>    
+  <Items itemName="WAIT" cmd="" compStr="" timeout="40" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_COMP_CHECK" cmd="show snmp conf" compStr="AIMIR>" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="30" USE="true" >
+   <Regex key="READ_COMMUNITY" value="rocommunity[\s,]+kepsnmpro[\s,]+read community" validValue="" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="WRITE_COMMUNITY" value="rwcommunity[\s,]+kepsnmprw[\s,]+write community" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+   <Regex key="SNMP_SERVER_ADD" value="SnmpServeraddr[\s,]+192.168.10.77[\s,]+nms server ip address" validValue="" isGetAttribute="true" isChecked="false" realValue="" /> 
+   <Regex key="SNMT_SERVER_PORT" value="SnmpTrapPort[\s,]+162[\s,]+nms server trap port" validValue="" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items>    
+  <Items itemName="CHECK_CONFIGURATION" cmd="show kepco conf" compStr="AIMIR>" timeout="5" SkipCond="" regexCheckRetry="5" USE="true" >
+   <Regex key="FW_Ver" value="fwBuild[\s,]+[0-9]{6}" validValue="fwBuild               [SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="GET_DCU_SERIAL" value="dcuSerial[\s,]+(?&lt;value&gt;.*)[\s,]+DCU Serial" validValue="" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="DCU_MODEL" value="dcuModel[\s,]+(?&lt;value&gt;.*)[\s,]+DCU model number" validValue="[DCU_MODEL_NUMBER]" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="DCU_TYPE" value="DcuType[\s,]+(?&lt;value&gt;.*)[\s,]+DCU Type" validValue="[DCU_TYPE_COMBINE]" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="FEP_DATA_PORT" value="fepDataPort[\s,]+(?&lt;value&gt;.*)[\s,]+FEP Data Port" validValue="3110" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="FEP_TRAP_PORT" value="fepTrapPort[\s,]+(?&lt;value&gt;.*)[\s,]+FEP Trap Port" validValue="7778" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="SYS_MIB_ENCRYPT" value="sysMIBEncrypt[\s,]+(?&lt;value&gt;.*)[\s,]+FEP, NMS ciphering" validValue="enable(1)" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="POWERUP_TRAP_RECV" value="PowerupTrapRecv[\s,]+(?&lt;value&gt;.*)[\s,]+NMS Fep PowerUp Trap" validValue="not receive(0)" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="REG_AVAIL_CODE" value="RegAvailCode[\s,]+(?&lt;value&gt;.*)[\s,]+NMS approve after" validValue="init(0)" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items> 
+  <Items itemName="CHECK_MASTER" cmd="show master list" compStr="AIMIR>" timeout="2" SkipCond="" regexCheckRetry="3" USE="true" >
+   <Regex key="COORDI_FW" value="FW Version:[\s,]+(?&lt;value&gt;.*)" validValue="1.6 b1" isGetAttribute="true" isChecked="false" realValue="" />  
+   <Regex key="COORDI_HW" value="HW Version:[\s,]+(?&lt;value&gt;.*)" validValue="2.0" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items> 
+ <Items itemName="SET_COORDINATOR" cmd="set coordinator configure 0x0C 0 0 0 0" compStr="AIMIR&gt;" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="ENABLE_CONF" value="configuration:[\s,]+(?&lt;value&gt;.*)" validValue="0x0C" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="MODEM_MODE" value="Modem mode[\s,]+= (?&lt;value&gt;.*)" validValue="Off" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ETC" value="ETC[\s,]+= (?&lt;value&gt;.*)" validValue="Off" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RECOVERY_START_TIME" value="Recovery Start time[\s,]+= (?&lt;value&gt;.*)" validValue="On" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RECOVERY_END_TIME" value="Recovery End time[\s,]+= (?&lt;value&gt;.*)" validValue="On" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DELETE_MODEM" cmd="delete modem all" compStr="AIMIR>" timeout="2" SkipCond="" regexCheckRetry="3" USE="true" >
+   <Regex key="MODEM_COUNT" value="No of deletes 1" validValue="" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items> 
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

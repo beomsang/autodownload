@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Starting kernel" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT_BOOT" cmd="" compStr="stm32mp1 login:" compStrCheckMode="true" timeout="60" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="LOGIN" cmd="root" compStr="root@stm32mp1:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="DELETE_FACTORYCOMPLETE" cmd="rm /app/conf/.factoryTestCompleted" compStr="root@stm32mp1:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_KERNEL" cmd="uname -a" compStr="root@stm32mp1:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="KERNEL_VERSION" value="Linux stm32mp1 4.19.49 #1 (?&lt;value&gt;.*) UTC 2021" validValue="SMP PREEMPT Fri Feb 26 05:58:28" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MAKE_DIRECTORY" cmd="mkdir /app/upgrade" compStr="root@stm32mp1:" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MOVE_DIRECTORY" cmd="cd /app/upgrade" compStr="root@stm32mp1:/app/upgrade#" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="TFTP_OPEN" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="DOWNLOAD_INSTALLER" cmd="tftp -g -r grnd/fwInstall.sh [PC_IP] /app/upgrade" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="CHANGE_INSTALL_FILE_PERMISSION" cmd="chmod +x fwInstall.sh" compStr="root@stm32mp1:/app/upgrade#" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FW_DOWNLOAD_TFTP" cmd="/app/upgrade/fwInstall.sh [PC_IP] [FW_FILE_NAME]" compStr="root@stm32mp1:/app/upgrade#" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true">
+    <Regex key="DOWNLOAD_COMPLETE" value="Install DONE" validValue="Install DONE" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SW_VERSION" cmd="cat /app/info/package.info | grep Package" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FW_VER" value="ngw v(?&lt;value&gt;.*) " validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_BUILD_VERSION" cmd="cat /app/info/revision.info" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="Build Num" value="[0-9a-zA-Z]{6}.[0-9a-zA-Z]{7}.[0-9a-zA-Z]{3}" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DELETE_FW_FILE" cmd="rm -rf /app/upgrade/*" compStr="root@stm32mp1:/app/upgrade#" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="ISSUE_EUI_ID" cmd="" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="2" option="" USE="true" />
+  <Items itemName="SET_GATEWAY_SERIAL" cmd="/app/script/setGatewaySerial.sh [EUI_ID]" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_EUIID" cmd="cat /app/conf/app.conf | grep serial" compStr="root@stm32mp1:/app/upgrade#" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="EUI64ID" value="serial = (?&lt;value&gt;.*)" validValue="[LENGTH:16]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="ISSUE_CERTIFICATION" cmd="" compStr="" compStrCheckMode="true" timeout="120" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="TFTP_CLOSE" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+    <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+
+ <Items itemName="HARDWARE_TEST" cmd="/app/bin/hwtest --id [EUI_ID] --hw-ver 1.0 --rs485-path /dev/ttySTM1 --rs485-meterlist &quot;[METER_LAST2_CHAR]&quot; --disable-ctrl" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="120" SkipCond="" regexCheckRetry="2" option="" USE="true">
+    <Regex key="CHECK_CAP" value="Cap Level: (?&lt;value&gt;.*)" validValue="[MIN:1.0]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Telecom Number" value="PhoneNo:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:11]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMSI" value="IMSI:[\s,]+(?&lt;value&gt;.*)" validValue="[LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ICCID" value="ICCID:[\s,]+(?&lt;value&gt;.*)F" validValue="[LENGTH:19]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Test Result" value="Test Result \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+
+
+<Items itemName="MODULE_BYPASS_ENTER" cmd="microcom -s 115200 /dev/ttyACM0" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_ATE" cmd="ATE" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="5" option="" USE="true" />
+  <Items itemName="INPUT_AT" cmd="AT" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="5" option="" USE="true" />
+  <Items itemName="CHECK_LTE" cmd="AT*SKT*DBS" compStr="OK" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="ANT0_RSRP" value="RSRP:(?&lt;value&gt;.*) RSRQ:" validValue="[MIN:-85]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="MODEM_IP" value="Inet6 addr:(?&lt;value&gt;.*)" validValue="[MODEM_IP]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_IMEI" cmd="AT*ST*IMEI?" compStr="OK" compStrCheckMode="true" timeout="7" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="IMEI" value="IMEI:(?&lt;value&gt;.*)" validValue="[LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MODULE_BYPASS_ESCAPE" cmd="[CAN]" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MAKE_CERT_CHAIN" cmd="/app/script/makeCertsChain.sh [EUI_ID]" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MAKE_RADIUS_CONF" cmd="/app/script/makeRadiusConf.sh [EUI_ID]" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MAKE_INIT_SYSTEM" cmd="/app/script/makeInitSystemd.sh" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="40" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INIT_PROPERTY" cmd="/app/script/initProperty.sh" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MAKE_SCHEDULE" cmd="/app/script/makeSchedule.sh [IMEI]" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHANGE_CLI_PWD" cmd="/app/bin/cli --setpassword aimiramm" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+ 
+
+  <Items itemName="CHECK_SCHEDULE_REBOOT" cmd="cat /app/schedule/reboot.sch" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="REBOOT_TIME" value="(?&lt;value&gt;.*) \* \* \* reset target" validValue="[REBOOT_TIME_MIN] [REBOOT_TIME_HOUR]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SCHEDULE_UPLWM2M" cmd="cat /app/schedule/uplwm2m.sch" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="UPLWM2M_TIME" value="(?&lt;value&gt;.*) \* \* \* \* uplwm2m" validValue="[UPLWM2M_TIME]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+<Items itemName="CHECK_SCHEDULE_MTR485" cmd="cat /app/schedule/mtr-485.sch" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="MTR485_TIME" value="(?&lt;value&gt;.*) \* \* \* \* metering485" validValue="[MRT485_TIME]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="CHECK_SCHEDULE_MTRRF" cmd="cat /app/schedule/mtr-rf.sch" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="MTRRF_TIME" value="(?&lt;value&gt;.*) \* \* \* \* kepPolling dataid" validValue="[MTRRF_TIME]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>   
+ <Items itemName="CHECK_SCHEDULE_MTRRFFAIL" cmd="cat /app/schedule/mtr-rf_fail.sch" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+ <Regex key="MTR_RF_FAIL_TIME" value="(?&lt;value&gt;.*) \* \* \* \* kepPolling dataid" validValue="[MTR_RF_FAIL_TIME]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+
+  <Items itemName="VALIDATION" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="CREATE_FactoryComp_File" cmd="touch /app/conf/.factoryTestCompleted" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="ENABLE_AGENT" cmd="systemctl enable aimir.agent" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="ENABLE_CLI" cmd="systemctl enable aimir.cli" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="DELETE_DISABLE_CLI" cmd="rm /app/conf/disable_cli" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SYNC" cmd="sync" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SYNC" cmd="sync" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="SYNC" cmd="sync" compStr="root@stm32mp1:/app/upgrade# " compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="REBOOT" cmd="reboot" compStr="Starting Reboot" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT_BOOT" cmd="" compStr="Started NuriLV5 Aimir" compStrCheckMode="true" timeout="130" SkipCond="" regexCheckRetry="1" option="" USE="true" /> 
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="4" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+
+ 
+<Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="User:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_ACCOUNT" cmd="aimir" compStr="Password:" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_PWD" cmd="aimiramm" compStr="AIMIR&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+ 
+ <Items itemName="CHECK_SW_VERSION" cmd="show system revision" compStr="AIMIR&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FW_VER" value="ngw v(?&lt;value&gt;.*) b" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_BUILD_VERSION" cmd="show system revision" compStr="AIMIR&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="Build Num" value="b426" validValue="b426" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_PROPERTY" cmd="show property" compStr="AIMIR&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="AUTH_DTLS" value="enable.dtls: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="AUTH_EAPTLS" value="enable.eaptls: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="AUTH_LEAFCERT" value="only.leafcert: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="AUTH_STANDALONE" value="mode.standalone: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DISCOVERY_INTERVAL" value="discovery.interval: (?&lt;value&gt;.*)" validValue="10" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DYNAMIC_TIMEOUT" value="dynamic.network.timeout.enable: (?&lt;value&gt;.*)" validValue="off" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HACK_DEFAULT" value="actreq.default: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IPSEC_ENABLE" value="ipsec.enable: (?&lt;value&gt;.*)" validValue="false" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="LWM2M_ENABLE" value="lwm2m.enable: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="LWM2M_LIFETIME" value="lwm2m.lifetime: (?&lt;value&gt;.*)" validValue="86400" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="LWM2M_METERING" value="dr.metering: (?&lt;value&gt;.*)" validValue="5" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="LWM2M_UPLOAD" value="dr.upload: (?&lt;value&gt;.*)" validValue="5" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="LWM2M_DELAY" value="lwm2m.registration.retry.delay: (?&lt;value&gt;.*)" validValue="30" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="LWM2M_CNT" value="lwm2m.security.debug: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DUMP_COUNT" value="upload.dump.cnt: (?&lt;value&gt;.*)" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_COUNT" value="metering.count.default: (?&lt;value&gt;.*)" validValue="2" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_FORCED_SAVE" value="metering.forced.save: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_MARGIN" value="lp.count.margin: (?&lt;value&gt;.*)" validValue="4" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_OFFSET" value="offset.default: (?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_OPTION" value="option.default: (?&lt;value&gt;.*)" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="NETWORK_RETRY" value="network.retry.default: (?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="NETWORK_TIMEOUT" value="network.timeout.default: (?&lt;value&gt;.*)" validValue="6" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_RS232" value="metering.rs232: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RS232_INTERFACE" value="rs232.interface: (?&lt;value&gt;.*)" validValue="/dev/ttySTM1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DLMS_SELECTOR" value="dlms.selector.default: (?&lt;value&gt;.*)" validValue="0x02" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="EVT_QUEUE_POLICY" value="evt.queue.policy: (?&lt;value&gt;.*)" validValue="remove_new" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="EVT_QUEUE_SIZE" value="evt.queue.size: (?&lt;value&gt;.*)" validValue="100" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_RUNTIME" value="metering.runtime: (?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TUNNEL_INITIAL" value="tunnel.initial: (?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TUNNEL_MAX" value="tunnel.max: (?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="PING_INTERVAL" value="ping.check.interval: (?&lt;value&gt;.*)" validValue="86400" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SCHEDULER_TIMEOUT" value="scheduler.timeout: (?&lt;value&gt;.*)" validValue="2400" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SUBGIGA_MODULE" value="subgiga.module.check: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SUBGIGA_INTERVAL" value="disabled.interval: (?&lt;value&gt;.*)" validValue="300" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="MOBILE_MODULE" value="mobile.module.enable: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SCHEDULE_DIST" value="schedule.dist.enable: (?&lt;value&gt;.*)" validValue="false" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SUBNET_SECURITY" value="security.sc: (?&lt;value&gt;.*)" validValue="0x00" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="UPLOAD_PERIOD" value="upload.period: (?&lt;value&gt;.*)" validValue="60" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="WATCHDOG_HW" value="watchdog.hw.enable: (?&lt;value&gt;.*)" validValue="true" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="UPLOAD_PAYLOAD" value="upload.payload: (?&lt;value&gt;.*)" validValue="900" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+
+  <Items itemName="DELETE_MODEM_ALL" cmd="delete modem all" compStr="AIMIR&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="5" option="" USE="true">
+    <Regex key="SUB_MODEM" value="Err:(?&lt;value&gt;.*)" validValue="No entry" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>

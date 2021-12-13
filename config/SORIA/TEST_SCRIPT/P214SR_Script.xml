@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="70" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CHECK_BOOT" cmd="" compStr="Starting TSCH" compStrCheckMode="true" timeout="90" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT_FOR_PASSWORD" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="nurisoriar" compStr="Password Verified" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INFO_CHECK" cmd="?" compStr="P214SR_CLI>" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="FW_Ver:(?&lt;value&gt;.*) Build" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value="Build_NUM:(?&lt;value&gt;.*) HW_Ver:" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="HW_Ver:(?&lt;value&gt;.*)\b" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="EUI64ID" value="EUI_ID : (?&lt;value&gt;.*)\b" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>  
+  <Items itemName="PARAMETER_CHECK" cmd="c" compStr="P214SR_CLI>" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Meter Serial" value="Meter Serial Number : (?&lt;value&gt;.*)" validValue="[METER_SERIAL]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TxPower" value="TxPower\s+: (?&lt;value&gt;.*)" validValue="-3" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Model Name" value="Model Name\s+: (?&lt;value&gt;.*)" validValue="NAMR-P214SR" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HES Auth Port" value="HES Auth Port\s+: (?&lt;value&gt;.*)" validValue="5555" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="COAP Port" value="COAP Port\s+: (?&lt;value&gt;.*)" validValue="5683" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DCU Server Port" value="DTLS DCU Server Port: (?&lt;value&gt;.*)" validValue="8015" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DCU Client Port" value="DTLS DCU Client Port: (?&lt;value&gt;.*)" validValue="8013" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HES Server Port" value="DTLS HES Server Port: (?&lt;value&gt;.*)" validValue="8006" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HES Client Port" value="DTLS HES Client Port: (?&lt;value&gt;.*)" validValue="8004" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="RESET" cmd="r 0 3 1 4" compStr="Starting TSCH" compStrCheckMode="true" timeout="35" SkipCond="" regexCheckRetry="3" USE="true"/>
+  <Items itemName="WAIT_FOR_PASSWORD" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" /> 
+  <Items itemName="INPUT_PASSWORD" cmd="nurisoriar" compStr="Password Verified" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="FACTORY_SETTING" cmd="t 99 255" compStr="RF init system" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="3-Pass" cmd="n 2 1" compStr="execute 3-Pass Auth" timeout="5" compStrCheckMode="true" SkipCond="" regexCheckRetry="3" USE="true"/>
+  <Items itemName="MFG_RELEASE" cmd="r 1" compStr="R 1: Success" timeout="5" compStrCheckMode="true" SkipCond="" regexCheckRetry="3" USE="true"/>
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

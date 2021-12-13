@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="MANUAL">
+  <Items itemName="CONNECT_RF_TESTER" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FW_DOWNLOAD" cmd="" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BOOTING_WITH_CLI" cmd="" compStr="" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="2" option="" USE="true" /> 
+ <Items itemName="FLASH_METER_TEST" cmd="L 1" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FLASH_TEST" value="Flash : (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METER_TEST" value="Meter : (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="RF_MAIN_STEP_START" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="CHANNEL_SET" cmd="c 99 [RF_CH_INTEGER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="RF_RX_MODE_SET" cmd="a" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="TESTER_RF_BURST" cmd="[RF_CH]" compStr="" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_RX_MEASURE" cmd="" compStr="" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_MAIN_STEP_END" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_MAIN_STEP_START" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="TX_PWR_SET" cmd="s 3 [TX_POWER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="TX_POWER" value="Set RF tx-power\((?&lt;value&gt;.*)\)" validValue="[TX_POWER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHANNEL_SET" cmd="c 99 [RF_CH_INTEGER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="RF_SYNC_WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="TESTER_MEASURE_SET" cmd="[RF_CH]" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_TX_BURST" cmd="s 1" compStr="tx_count" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_TX_MEASURE" cmd="" compStr="" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="RF_MAIN_STEP_END" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="ISSUE_EUI_ID" cmd="" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="20" option="" USE="true" />
+  <Items itemName="WRITE_EUI_ID" cmd="J 1 [EUI_ID_10DIGIT]" compStr="M_CLI&gt;" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="EUIID_CHECK" value="EUI ID : (?&lt;value&gt;.*)" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WRITE_FINAL_DATE" cmd="J 2 [DATE_SPACE]" compStr="M_CLI&gt;" compStrCheckMode="false" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WRITE_RESULT" cmd="J 3" compStr="Test Result Save: Success" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" option="" USE="true" />  
+<Items itemName="RELASE_MFG" cmd="R 1" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Read index" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="Wi-Sun RF&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_MODEM_INFO" cmd="c" compStr="Wi-Sun RF&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="5" option="" USE="true">
+    <Regex key="Modem_Type" value="ModemType[\s,]+: (?&lt;value&gt;.*)" validValue="05 [MODEM_SF_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Tx_Power" value="TxPower[\s,]+: (?&lt;value&gt;.*)" validValue="2" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FW_Ver" value="F/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build_Num" value="Build Number[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="H/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_CONFIGURATION" cmd="x" compStr="Wi-Sun RF&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="5" option="" USE="true">
+    <Regex key="MODBUS_SCAN_START_ADDR" value="Scan Start Addr[\s,]+= (?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="MODBUS_SCAN_END_ADDR" value="Scan End Addr[\s,]+= (?&lt;value&gt;.*)" validValue="110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METER_READ_INTERVAL" value="Meter Read Interval[\s,]+= (?&lt;value&gt;.*)" validValue="60" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_UPLOAD_MAX" value="Metering Upload Max[\s,]+= (?&lt;value&gt;.*)" validValue="60" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CLEAR_FLASH_LP_AREA" cmd="x 104" compStr="Clear Flash LP Area" compStrCheckMode="true" timeout="60" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="DISCONNECT_RF_TESTER" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>

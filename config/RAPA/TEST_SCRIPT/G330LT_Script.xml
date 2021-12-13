@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BOOTING_WAIT" cmd="" compStr="Init System Processor" compStrCheckMode="true" timeout="150" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="kepco" compStr="Password Verified!" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="STOP_METERING" cmd="a s 98" compStr="Write_Rom_MeterList" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="CHECK_SERVER_INFO" cmd="router info" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SERVER_IP" value="AMR_SERVER_IP[\s,]+: (?&lt;value&gt;.*)" validValue="59.3.93.110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SERVER_PORT" value="AMR_SERVER_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="16000" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MODULE_BYPASS_ENTER" cmd="t3" compStr="Enter Bypass CLI-LTE" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_SERVER_INFO" cmd="AT$FEP" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FEPAMIPORT" value="FEPAMIPORT:(?&lt;value&gt;.*)" validValue="15666" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPSERVER" value="FEPSERVER:(?&lt;value&gt;.*)" validValue="59.3.93.110" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPTIMEOUT" value="FEPTIMEOUT:(?&lt;value&gt;.*)" validValue="10" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPACODERO" value="FEPACODERO:(?&lt;value&gt;.*)" validValue="kepfepro" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPACODERW" value="FEPACODERW:(?&lt;value&gt;.*)" validValue="kepfeprw" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPPUSHPORT" value="FEPPUSHPORT:(?&lt;value&gt;.*)" validValue="16000" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPBYPASSPORT" value="FEPBYPASSPORT:(?&lt;value&gt;.*)" validValue="11470" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPFQDN" value="FEPFQDN:(?&lt;value&gt;.*)" validValue="KEP8000000001.kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEPREALM" value="FEPREALM:(?&lt;value&gt;.*)" validValue="kepco.com" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="READ_IMEI" cmd="AT*IMEI?" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="6" option="" USE="true">
+    <Regex key="IMEI" value="IMEI:(?&lt;value&gt;.*)" validValue="[LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="READ_PHONE_NUM" cmd="AT+CNUM" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="6" option="" USE="true">
+    <Regex key="Telecom Number" value="[0-9]{11}" validValue="[LENGTH:11]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="READ_IMSI" cmd="AT*ST*IMSI?" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="6" option="" USE="true">
+    <Regex key="IMSI" value="IMSI:(?&lt;value&gt;.*)" validValue="[LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="READ_ICCID" cmd="AT*ST*ICCID?" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="6" option="" USE="true">
+    <Regex key="ICC" value="ICCID:(?&lt;value&gt;.*)" validValue="[LENGTH:19]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="CHECK_MODULE_VER" cmd="AT*VERINFO" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="6" option="" USE="true">
+    <Regex key="LTE_FW_VER" value="V0.2.00J01" validValue="V0.2.00J01" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+   <Items itemName="RETRY" cmd="" compStr="" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="5" option="" USE="true" />
+   <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="READ_RSRP" cmd="At*skt*level=0" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="5" option="" USE="true" >
+    <Regex key="ANT0_RSRP" value="LEVEL:[+-]?\d*,[+-]?\d*,(?&lt;value&gt;.*),[+-]?\d*" validValue="[MIN:-150]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="RETRY_END" cmd="" compStr="" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="30" option="" USE="true" />
+ <Items itemName="CHECK_LTE_STS" cmd="AT+CREG?" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="10" option="" USE="true" >
+    <Regex key="LTE_STATUS" value="CREG:[\s,]+[+-]?\d*,(?&lt;value&gt;.*)" validValue="1[or]5" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+   <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+ <Items itemName="CHECK_GMMP_STS" cmd="AT*SKT*GMMPGWREGI" compStr="GMMP Profile" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="10" option="" USE="true" >
+    <Regex key="GMMP_STATUS" value="GW Registration (?&lt;value&gt;.*)" validValue="Success!!" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MODULE_BYPASS_ESCAPE" cmd="[ESC]" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+<Items itemName="CHECK_MODEM_INFO" cmd="system info" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FW_Ver" value="FIRMWARE_VERSION[\s,]+: RAPA_V(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build_Num" value="FIRMWARE_BUILD[\s,]+: (?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="LTE_VER" value="LTE_MODULE_VERSION[\s,]+: (?&lt;value&gt;.*)" validValue="V0.2.00 J01" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_INTERVAL" value="METERING_INTERVAL[\s,]+: (?&lt;value&gt;.*) Min." validValue="15" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RESET_INTERVAL" value="RESET_INTERVAL[\s,]+: (?&lt;value&gt;.*) Min" validValue="1440" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_CNTMIN" value="METERING_CNTMIN[\s,]+: (?&lt;value&gt;.*) Min." validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="POWER_RESTORE_DELAY_TIME" value="Power Restore delay time[\s,]+: (?&lt;value&gt;.*) sec." validValue="30" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="ARIA_MODE" value="ARIA Mode[\s,]+: (?&lt;value&gt;.*)" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="UPLOAD_DIV" value="UPLOAD DIV[\s,]+: (?&lt;value&gt;.*)" validValue="70" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="UPLOAD_DELAY" value="UPLOAD delay[\s,]+: (?&lt;value&gt;.*) sec" validValue="[UPLOAD_DELAY]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RESET_DELAY" value="RESET  delay[\s,]+: (?&lt;value&gt;.*) sec" validValue="[RESET_DELAY]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_START_TIME" value="Metering Start time[\s,]+: (?&lt;value&gt;.*) min" validValue="2" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METERING_ERROR_SYNCH" value="Metering Error Synch[\s,]+: (?&lt;value&gt;.*) min" validValue="2" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="TEST_RS485" cmd="test meter [METER_LAST2_CHAR]" compStr="LOOPTEST OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+ <Items itemName="WATCHDOG" cmd="w 0 3 1 4" compStr="WDG Reset system" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+ <Items itemName="WAIT_BOOT" cmd="" compStr="Init System Processor" compStrCheckMode="true" timeout="150" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+ <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+ <Items itemName="INPUT_PASSWORD" cmd="kepco" compStr="Password Verified!" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+ <Items itemName="LED FLICKERING" cmd="t4" compStr="LED TEST" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="VALIDATION" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>

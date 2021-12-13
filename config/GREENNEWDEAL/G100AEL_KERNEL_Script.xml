@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+<Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />    
+<Items itemName="FW_DOWNLOAD" cmd="[FILE:FlashLayout_nand-2-128_stm32mp157c-ev1-revZ_iptables.tsv]" compStr="" compStrCheckMode="false" timeout="60" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+ <Items itemName="CONFIRM_CONTINUE" cmd="" compStr="" compStrCheckMode="true" timeout="50" SkipCond="" regexCheckRetry="1" USE="true" />
+
+  <Items itemName="BOOT_CHECK" cmd="" compStr="INFO:" compStrCheckMode="true" timeout="180" SkipCond="" regexCheckRetry="1" USE="true" />
+<Items itemName="CHECK_START_SERVICE" cmd="" compStr="Started NuriLV5 Aimir CLI" compStrCheckMode="true" timeout="200" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+   <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

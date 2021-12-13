@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="70" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Scheduler start!" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="APP_TEST" cmd="" compStr=" END TEST[or] END TEST ERROR" timeout="20" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="TEST FLASH" value="TEST FLASH = \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TEST GPRS" value="TEST GPRS = \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />    
+    <Regex key="TEST SIMCARD" value="TEST SIMCARD = \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />    
+    <Regex key="IMEI" value="IMEI :(?&lt;value&gt;.*)" validValue="[NOT:000000000000000][LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WAIT" cmd="" compStr="" timeout="7" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CHECK_SYSTEM" cmd="system config" compStr="FreeRTOS CLI>" timeout="8" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="EUI64ID" value="MODEM EUI : (?&lt;value&gt;.*)" validValue="[NOT:0000000000000000]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FW_Ver" value="FWVersion : 0x(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value="BuildNumber : 0x(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="HWVersion : 0x(?&lt;value&gt;.*)" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

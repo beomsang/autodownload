@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BOOTING_WITH_BOOTLOAD" cmd="" compStr="" compStrCheckMode="true" timeout="250" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FW_BACKUP" cmd="B" compStr="FW Image Backup" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT_FW_BACKUP" cmd="" compStr="FW Upgrade Starting" compStrCheckMode="true" timeout="25" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+
+  <Items itemName="FW_UPLOAD_OTA" cmd="" compStr="" compStrCheckMode="true" timeout="200" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FW_DOWLOAD_START" cmd="" compStr="Fiwmware Downlod Start" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FW_CRC_CHECK" cmd="" compStr="Fiwmware CRC Check Success" compStrCheckMode="true" timeout="20" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="FW_INSTALL_SUCCESS" cmd="" compStr="Firmware Download Success" compStrCheckMode="true" timeout="50" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="BOOTING_WITH_APP" cmd="" compStr="" compStrCheckMode="true" timeout="100" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="CHECK_PROPERTY" cmd="a b" compStr="x230LT_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="HW_MODEL" value="HW Version:[\s,]+: (?&lt;value&gt;.*)" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build_Num" value="FW Date:[\s,]+: (?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MODULE_BYPASS_ENTER" cmd="b" compStr="-Start" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+<Items itemName="CHECK_MODULE_FW" cmd="AT*ST*INFO?" compStr=",V0.2.00," compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+<Items itemName="CHECK_MODULE_BUILD" cmd="AT*ST*INFO?" compStr="NURI,V45" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+
+<Items itemName=" " cmd="AT*ST*INFO?" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" >
+    <Regex key="Telecom Number" value="1.0,(?&lt;value&gt;.*),NURI," validValue="[LENGTH:11]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+
+  <Items itemName="MODULE_BYPASS_ESCAPE" cmd="[ESC]" compStr="x230LT_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>

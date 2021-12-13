@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="INT:[Init_SystemVariable]" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="Input_Password" cmd="12qw" compStr="[CLI]OK" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="2" USE="true">
+    <Regex key="CHECK_LOGIN" value="Password Verified" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_IMSI" cmd="3e" compStr="[CLI]OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="IMSI" value="[0-9]{15}" validValue="[NOT:000000000000000][LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_TELECOM_NUMBER" cmd="4r" compStr="[CLI]OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Telecom Number" value="[0-9]{11}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_ICC" cmd="5t" compStr="[CLI]OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="ICC" value="[0-9]{19}" validValue="[NOT:0000000000000000000][LENGTH:19]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_LOOPBACK" cmd="loop [METER_LAST2_CHAR]" compStr="LOOPTEST OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_DCU_IP" cmd="setdcu 223.175.251.137,16000" compStr="[CLI]OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SET_MODEL_NAME" cmd="7u G420L" compStr="[CLI]OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_MODEM_INFO" cmd="2w" compStr="[CLI]OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="IMEI" value="IMEI:[\s,]+(?&lt;value&gt;.*)" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FW_Ver" value="HW VER[\s,]+:[\s,]+HW12-[A-Z]{1,2}(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build_Num" value="BUILD \# :[\s,]+(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Modem_Type" value="MODEL NAME:[\s,]+(?&lt;value&gt;.*)" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DCU IP" value="DCU INFO:[\s,]+(?&lt;value&gt;.*) / 16000" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="CHECK_FILE_SIZE" value="FileSize\(423936\):[\s,]+(?&lt;value&gt;.*)" validValue="423936" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_LTE" cmd="2w" compStr="[CLI]OK" timeout="3" SkipCond="" regexCheckRetry="40" USE="true" >
+    <Regex key="LTE CONN" value="LTE CONNECT\(0\/1\):[\s,]+(?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_ANT0_RSRP" cmd="9o" compStr="[CLI]OK" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" >
+    <Regex key="ANT0_RSRP" value="Ant0=[\s,]+(?&lt;value&gt;.*)," validValue="[MIN:-80]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_ANT1_RSRP" cmd="9o" compStr="[CLI]OK" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" >
+    <Regex key="ANT1_RSRP" value="Ant1=[\s,]+(?&lt;value&gt;.*)" validValue="[MIN:-100]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="SET_METER_SCAN_MODE" cmd="9ol at%dlms=&quot;setscanmode&quot;,&quot;0&quot;" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="GET_METER_SCAN_MODE" cmd="9ol at%dlms=&quot;getscanmode&quot;" compStr="OK" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" >
+    <Regex key="METER_SCAN_MODE" value="ScanMode :[\s,]+(?&lt;value&gt;.*)" validValue="0" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WATCH_DOG" cmd="6y" compStr="WATCH DOG TEST" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_REBBOT" cmd="" compStr="INT:[Init_SystemVariable]" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="VALIDATION" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

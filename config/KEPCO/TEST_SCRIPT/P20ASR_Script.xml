@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Read index" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="Input Password :" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="INPUT_PASSWORD" cmd="nurikepco" compStr="Password Verified" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_MODEM_INFO" cmd="c" compStr="Wi-Sun RF&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="Telecom Number" value="EUI_ID[\s,]+: (?&lt;value&gt;.*)" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Modem_Type" value="Model Name[\s,]+: (?&lt;value&gt;.*)" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Tx_Power" value="TxPower[\s,]+: (?&lt;value&gt;.*)" validValue="4" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FW_Ver" value="F/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build_Num" value="Build Number[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="H/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

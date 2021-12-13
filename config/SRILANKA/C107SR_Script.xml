@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="20" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="NAMR-C107SR&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="MODEM_INFO" cmd="i" compStr="NAMR-C107SR&gt;" compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="^  F/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value="Build Number[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="H/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TX Power" value="TX Power[\s,]+: (?&lt;value&gt;.*)" validValue="32" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="APP_TEST" cmd="L 1" compStr="NAMR-C107SR&gt;" compStrCheckMode="false" timeout="70" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="TEST FLASH" value="Flash[\s,]+: (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TEST METER" value="Meter[\s,]+: (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="PLC_CONNECTION" cmd="N 1 12" compStr="Short Id" compStrCheckMode="true" timeout="15" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="LQI" value="LQI[\s,]+: (?&lt;value&gt;.*)" validValue="[MIN:0x15]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="ISSUE_EUI_ID" cmd="" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WRITE_EUI_ID" cmd="j 1 [EUI_ID_10DIGIT]" compStr="NAMR-C107SR&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="EUIID_CHECK" value="EUI ID : (?&lt;value&gt;.*) - Set success!" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="RESET" cmd="R 0 3 1 4" compStr="Meter Comm Test" compStrCheckMode="true" timeout="9" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="NAMR-C107SR&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="MODEM_INFO" cmd="i" compStr="NAMR-C107SR&gt;" compStrCheckMode="false" timeout="3" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FW_Ver" value="^  F/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value="Build Number[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="H/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TX Power" value="TX Power[\s,]+: (?&lt;value&gt;.*)" validValue="32" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="EUI64ID" value="[0-9a-zA-Z]{16}" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+</ScriptData>

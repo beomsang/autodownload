@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="20" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr=" HW TEST START" compStrCheckMode="true" timeout="120" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="APP_TEST" cmd="" compStr=" END TEST[or] END TEST ERROR" timeout="70" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="TEST METER" value="TEST METER = \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TEST GPRS" value="TEST GPRS = \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TEST SIMCARD" value="TEST SIMCARD = \[(?&lt;value&gt;.*)\]" validValue="Ok" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="Input Enter" cmd="[ENTER]" compStr=" Input Password : " timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="Input Password" cmd="iraq" compStr="" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="Input Enter" cmd="[ENTER]" compStr="NAMR_P402GP_CLI&gt;" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_SYSTEM" cmd="c" compStr="NAMR_P402GP_CLI&gt;" compStrCheckMode="true" timeout="6" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="EUI64ID" value="EUI \(rf IMEI\)[\s,]+: (?&lt;value&gt;.*)" validValue="[NOT:0000000000000000][LENGTH:16]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FW_Ver" value="FW Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build Num" value="Build Number[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="HW Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MFG_RESET" cmd="mfgreset" compStr="nit_SystemVariable" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="2" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="Input Enter" cmd="[ENTER]" compStr="M_CLI>" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="SIM_TEST" cmd="M" compStr="M_CLI>" compStrCheckMode="true" timeout="6" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="AtCmd" value="AtCmd \: \[(?&lt;value&gt;.*)\]" validValue="OK" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SIM" value="SimTest \: \[(?&lt;value&gt;.*)\]" validValue="OK" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMEI" value="IMEI \: (?&lt;value&gt;.*)" validValue="[NOT:000000000000000][LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="IMSI" value="IMSI \: (?&lt;value&gt;.*)" validValue="[NOT:000000000000000][LENGTH:15]" isGetAttribute="true" isChecked="false" realValue="" />  
+    <Regex key="ICC" value="[0-9]{20}" validValue="[NOT:00000000000000000000][LENGTH:20]" isGetAttribute="true" isChecked="false" realValue="" />  
+  </Items>
+  <Items itemName="FLASH_TEST" cmd="F" compStr="M_CLI>" compStrCheckMode="true" timeout="6" SkipCond="" regexCheckRetry="5" USE="true">
+    <Regex key="TEST FLASH" value="TEST FLASH : \[(?&lt;value&gt;.*)\]" validValue="OK" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="MFG_RELEASE" cmd="r 1" compStr="R 1: Success" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="3" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

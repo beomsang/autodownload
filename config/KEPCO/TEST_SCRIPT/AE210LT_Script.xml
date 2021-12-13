@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" timeout="70" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="AT" compStr="OK" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CHECK_LTE_COMM" cmd="AT%DLMS=&quot;MODEM&quot;" compStr="OK" timeout="3" SkipCond="" regexCheckRetry="30" USE="true" >
+    <Regex key="LTE CONN" value="LTE CONNECT\(0\/1\):[\s,]+(?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="GMMP CONN" value="GMMP CONNECT\(0\/1\):[\s,]+(?&lt;value&gt;.*)" validValue="1" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="CHECK_ANT0_RSRP" cmd="AT%MEAS=&quot;20&quot;" compStr="OK" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" >
+    <Regex key="ANT0_RSRP" value="Ant0=[\s,]+(?&lt;value&gt;.*)," validValue="[MIN:-95]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_ANT1_RSRP" cmd="AT%MEAS=&quot;20&quot;" compStr="OK" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" >
+    <Regex key="ANT1_RSRP" value="Ant1=[\s,]+(?&lt;value&gt;.*)" validValue="[MIN:-105]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_PROPERTY" cmd="AT%DLMS=&quot;MODEM&quot;" compStr="OK" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" >
+    <Regex key="LP INTERVAL" value="LP INTERVAL:[\s,]+15" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RESET INIT" value="RESET INT:[\s,]+1440" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="BUIL_NUMBER" value="BUILD # :[\s,]+010" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Telecom Number" value="NUMBER:[\s,]+(?&lt;value&gt;.*)" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="DCU IP" value="[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3} \/ [0-9]{1,5}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RSRP" value="RSRP:[\s,]+(?&lt;value&gt;.*)" validValue="[MIN:-100]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_LOOPBACK" cmd="AT%DLMS=&quot;LOOPBACK&quot;,&quot;[METER_LAST2_CHAR]&quot;" compStr="LOOPBACKED" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>
+
+
+
+
+
+

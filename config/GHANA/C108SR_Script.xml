@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" scriptType="MANUAL">
+  <Items itemName="CONNECT_RF_TESTER" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="FW_DOWNLOAD" cmd="[FILE:[FW_FILE_#1]]" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="PLC-BootUP" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="PLC_CONNECTION" cmd="nuri plc 0" compStr="SNR" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="LQI_FORWARD" value="LQI\(Forward: (?&lt;value&gt;.*)," validValue="[MIN:[PLC_LQI_FWD_MIN]][MAX:[PLC_LQI_FWD_MAX]]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="LQI_BACKWARD" value="LQI\(Forward: [+-]?\d*(\.?\d*), Backward: (?&lt;value&gt;.*)\)" validValue="[MIN:[PLC_LQI_BWD_MIN]][MAX:[PLC_LQI_BWD_MAX]]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNR_FORWARD" value="SNR\(Forward: (?&lt;value&gt;.*)," validValue="[MIN:[PLC_SNR_FWD_MIN]][MAX:[PLC_SNR_FWD_MAX]]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SNR_BACKWARD" value="SNR\(Forward: [+-]?\d*(\.?\d*), Backward: (?&lt;value&gt;.*)\)" validValue="[MIN:[PLC_SNR_BWD_MIN]][MAX:[PLC_SNR_BWD_MAX]]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="FW_DOWNLOAD" cmd="[FILE:[FW_FILE_#2]]" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="BOOTING_WITH_CLI" cmd="" compStr="" compStrCheckMode="true" timeout="110" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="FLASH_TEST" cmd="L 1" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="FLASH_TEST" value="Flash : (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_TEST" cmd="L 4" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="METER_TEST" value="Meter : (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="RF_MAIN_STEP_START" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="CHANNEL_SET" cmd="c 99 [RF_CH_MUL:1000]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="RF_RX_MODE_SET" cmd="a" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="TESTER_RF_BURST" cmd="[RF_CH]" compStr="" compStrCheckMode="true" timeout="50" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_RX_MEASURE" cmd="" compStr="" compStrCheckMode="true" timeout="60" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_MAIN_STEP_END" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="2" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_MAIN_STEP_START" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="TX_PWR_SET" cmd="p 0 3" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="TX_POWER" value="Set RF tx-power\((?&lt;value&gt;.*)\)" validValue="3" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHANNEL_SET" cmd="c 99 [RF_CH_MUL:1000]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="TESTER_MEASURE_SET" cmd="[RF_CH]" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_TX_BURST" cmd="s 1" compStr="tx_count" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_TX_MEASURE" cmd="" compStr="" compStrCheckMode="true" timeout="60" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="RF_MAIN_STEP_END" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="ISSUE_EUI_ID" cmd="" compStr="" compStrCheckMode="true" timeout="10" SkipCond="" regexCheckRetry="20" USE="true" />
+  <Items itemName="WRITE_EUI_ID" cmd="J 1 [EUI_ID_10DIGIT]" compStr="M_CLI&gt;" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="EUIID_CHECK" value="EUI ID : (?&lt;value&gt;.*)" validValue="[EUI_ID]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WRITE_FINAL_DATE" cmd="J 2 [DATE_SPACE]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true">
+    <Regex key="CHECK_LOCK" value="Lock : (?&lt;value&gt;.*)" validValue="00" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="WRITE_RESULT" cmd="J 3" compStr="Test Result Save: Success" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="SET_TEST_BLE" cmd="L 17" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="UART2_ENABLE" value="UART2 Enable" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="TEST_BLE" cmd="L 18" compStr="Bypassmode End" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="TEST_BLE2" cmd="TTM:MAC-?" compStr="MAC-0[or]MAC-1" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="TTM_MAC" value="[0-9A-Z]{12}" validValue="[NOT:000000000000000][LENGTH:12]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="END_TEST_BLE" cmd="[ESC]" compStr="_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="LOOP_BACK" cmd="L 20 [METER_SERIAL]" compStr="FINISH UIU RECIEVE MODE" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="TOTAL_ENERGY" value="Total_energy" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="ISSUE_CERTIFICATION" cmd="" compStr="" compStrCheckMode="true" timeout="30" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="3PASS" cmd="n 2 1" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="3PASS_RESULT" value="3-Pass Auth.[\s,]+(?&lt;value&gt;.*)" validValue="Test" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="RELEASE_MFG" cmd="R 1" compStr="R 1: Success" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Meter Terminal" compStrCheckMode="true" timeout="90" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="C108SR_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="FactorySET" cmd="f 0 3 1 4" compStr="Factory setting" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="Meter Terminal" compStrCheckMode="true" timeout="90" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="C108SR_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CLONE_OFF" cmd="A 1 100" compStr="C108SR_CLI&gt;" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="CHECK_MODEM_INFO" cmd="C" compStr="C108SR_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" USE="true">
+    <Regex key="EUI_ID" value="EUI_ID[\s,]+: (?&lt;value&gt;.*)" validValue="[EUI_ID_16DIGIT_SPACE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Tx_Power" value="TxPower[\s,]+: (?&lt;value&gt;.*)" validValue="3" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Modem_Type" value="Model Name[\s,]+: (?&lt;value&gt;.*)" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FW_Ver" value="F/W Version[\s,]+: 0x(?&lt;value&gt;.*)[\s,]+- Build Number" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Build_Num" value="Build Number[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[BUILD_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="HW Ver" value="H/W Version[\s,]+: 0x(?&lt;value&gt;.*)" validValue="[HW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="LED_TOGGLE" cmd="l 8" compStr="LED blink" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" USE="true" />
+  <Items itemName="VALIDATION" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="DISCONNECT_RF_TESTER" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" USE="true" />
+</ScriptData>

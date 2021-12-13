@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<ScriptData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" scriptType="TEST">
+  <Items itemName="CONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="30" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+<Items itemName="BOOT_CHECK" cmd="" compStr="Enter MFG CMD(if want)" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="t 99 255" compStr="Factorytest Mode retry" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MIU_TEST_CONFIRM" cmd="" compStr="MIU Test mode[Y/N]" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_Y" cmd="Y" compStr="[Init System Processor]" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="task_WDOG Creater" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="METER_TEST_OPTICAL_READY" cmd="L 1" compStr="ExtRom Test SUCCESS" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="EXTROM_TEST" value="ExtRom Test (?&lt;value&gt;.*)" validValue="SUCCESS" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="METER_TEST_BY_OPTICAL" cmd="METER TEST OK" compStr="METER TEST OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="INPUT_ESC" cmd="[ESC]" compStr="M_CLI&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="BOOT" cmd="R 1" compStr="SUCCESS Factorytest Mode complete" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+    
+<Items itemName="MIU_TEST_WAIT" cmd="" compStr="MIU Test mode[Y/N]?" compStrCheckMode="true" timeout="70" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="MIU_TEST" cmd="Y" compStr="[Init System Processor]" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="BOOT_CHECK" cmd="" compStr="task_WDOG Creater" compStrCheckMode="true" timeout="40" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="3" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+ 
+  <Items itemName="CHECK_SERVER_INFO" cmd="router info" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FEP_IP" value="AMR_SERVER_IP[\s,]+: (?&lt;value&gt;.*)" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_PORT" value="AMR_SERVER_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="17000" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TRAP_IP" value="AMR_TRAP_SERVER_IP[\s,]+: (?&lt;value&gt;.*)" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TRAP_PORT" value="AMR_TRAP_SERVER_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="18000" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SEC_IP" value="AMR_SEC_SERVER_IP[\s,]+: (?&lt;value&gt;.*)" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SEC_PORT" value="AMR_SEC_SERVER_PORT[\s,]+: (?&lt;value&gt;.*)" validValue="12083" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="LTE_BYPASS" cmd="t3" compStr="CLI-LTE UART" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="CHECK_FEP_INFO" cmd="AT$FEP" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FEP_SERVER_IP" value="FEPSERVER:(?&lt;value&gt;.*)" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="FEP_SERVER_PORT" value="FEPPUSHPORT:(?&lt;value&gt;.*)" validValue="17000" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_TRAP_INFO" cmd="AT$FEPTRAP" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="TRAP_SERVER_IP" value="TRAPSERVER:(?&lt;value&gt;.*)" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="TRAP_SERVER_PORT" value="TRAPPORT:(?&lt;value&gt;.*)" validValue="18000" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_SEC_INFO" cmd="AT$SEC" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="SEC_SERVER_IP" value="SECSERVERIP:(?&lt;value&gt;.*)" validValue="223.175.251.137" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="SEC_SERVER_PORT" value="SECSERVERPORT:(?&lt;value&gt;.*)" validValue="12083" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+
+<Items itemName="READ_IMEI" cmd="AT*IMEI?" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="6" option="" USE="true">
+    <Regex key="IMEI" value="[0-9]{15}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_TELECOM_NUMBER" cmd="AT+CNUM" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="Telecom Number" value="[0-9]{11}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_IMSI" cmd="AT*ST*IMSI?" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="IMSI" value="[0-9]{15}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="READ_ICCID" cmd="AT*ST*ICCID?" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="ICC" value="[0-9]{19}" validValue="" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_MODULE_FW" cmd="AT*VERINFO" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="MODULE_FW" value="NTLM1610,(?&lt;value&gt;.*),[0-9]," validValue="V0.2.02V04" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_RSRP" cmd="at*skt*level=0" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="RSRP" value="LEVEL:[+-]?\d*,[+-]?\d*,(?&lt;value&gt;.*),[+-]?\d*" validValue="[MIN:-95]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_LTE_CONNECTION" cmd="AT+CREG?" compStr="OK" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="LTE_CONNECTION" value="CREG: [+-]?\d*,(?&lt;value&gt;.*)" validValue="1[or]5" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="CHECK_GMMP_CONNECTION" cmd="AT*SKT*GMMPGWREGI" compStr="GMMP Profile Operation" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="GMMP_REGISTRATION" value="GMMP GW Registration (?&lt;value&gt;.*)" validValue="Success!!" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="GMMP_PROFILE" value="GMMP Profile Operation (?&lt;value&gt;.*)" validValue="Success!!" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+
+  <Items itemName="RELEASE_LTE_BYPASS" cmd="[ESC]" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+
+  <Items itemName="INPUT_ENTER" cmd="[ENTER]" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true" />
+  <Items itemName="WAIT" cmd="" compStr="" compStrCheckMode="true" timeout="1" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+
+<Items itemName="CHECK_MODEM_INFO" cmd="system info" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="FW_Ver" value="FIRMWARE_VERSION[\s,]+: Kepco_V(?&lt;value&gt;.*)" validValue="[SW_VER]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="Modem_Type" value="HARDWARE_VERSION[\s,]+: (?&lt;value&gt;.*)" validValue="[MODEM_TYPE]" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="METER_INTERVAL" value="MAIN_METERING_INTERVAL[\s,]+: (?&lt;value&gt;.*)." validValue="15 Min" isGetAttribute="true" isChecked="false" realValue="" />
+    <Regex key="RESET_INTERVAL" value="RESET_INTERVAL[\s,]+: (?&lt;value&gt;.*) Min." validValue="1440" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+ <Items itemName="CHECK_METER_TYPE_NEW" cmd="parent info" compStr="Kepco Modem&gt;" compStrCheckMode="true" timeout="5" SkipCond="" regexCheckRetry="3" option="" USE="true">
+    <Regex key="METER_TYPE" value="METER_TYPE[\s,]+:[\s,]+(?&lt;value&gt;.*)" validValue="[NEW KEPCO]" isGetAttribute="true" isChecked="false" realValue="" />
+  </Items>
+  <Items itemName="LED_FLICKERING" cmd="t4" compStr="LED TEST" compStrCheckMode="true" timeout="50" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="DISCONNECT_PORT" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+  <Items itemName="VALIDATION" cmd="" compStr="" compStrCheckMode="false" timeout="5" SkipCond="" regexCheckRetry="1" option="" USE="true" />
+</ScriptData>
