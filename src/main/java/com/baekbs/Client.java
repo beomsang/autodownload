@@ -17,13 +17,13 @@ import java.util.Map;
 public class Client {
 
     //서버 아이피 정보
-    public static final String SERVER = "nuriqc.iptime.org";
+    public static final String SERVER = "";
     //서버 포트 정보
     public static final int SERVER_PORT = 21;
     //서버 아이디
-    public static final String ID = "ftp";
+    public static final String ID = "";
     //서버 패스워드
-    public static final String PW = "admin";
+    public static final String PW = "";
 
     public static void main(String[] args) {
 
